@@ -12,6 +12,8 @@
     
     
     
+    <link rel="alternate" href="/atom.xml" title="行者" type="application/atom+xml">
+    
     
     <link rel="icon" href="/img/favicon.ico">
     
@@ -41,14 +43,18 @@
 					
 						<li><a href="/">Home</a></li>
 					
+						<li><a href="/index">Index</a></li>
+					
 						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
 					
 					<li>
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
 						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="hidden" name="q" value="site:fblq-zg.github.io">
 					</form>
 					
 					</li>
@@ -62,7 +68,7 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/08/08/hello-world/" title="Hello World" itemprop="url">
+    <a href="/post/hello-world/" title="Hello World" itemprop="url">
   
     <h1 itemprop="name">Hello World</h1>
     
@@ -74,6 +80,84 @@
   </a>
 </section>
 
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/post/shell命令学习/" title="shell命令学习" itemprop="url">
+  
+    <h1 itemprop="name">shell命令学习</h1>
+    
+     
+           <p itemprop="description" >1）找出机器中所有硬盘个数及设备名称：fdisk -l;2）更改主机名称：uname -a; hostname;3）修改步骤：        ①hostname oldname;（这步修改临时有效，重启后会失效）        ②修改etc/sysconfig/networks中</p>
+        
+    
+    <time datetime="2015-07-16T01:12:59.000Z" itemprop="datePublished">2015-07-16</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/post/设计模式之桥接模式/" title="设计模式之桥接模式" itemprop="url">
+  
+    <h1 itemprop="name">设计模式之桥接模式</h1>
+    
+     
+           <p itemprop="description" ></p>
+        
+    
+    <time datetime="2015-05-10T07:40:39.000Z" itemprop="datePublished">2015-05-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/post/值类型与引用类型/" title="值类型与引用类型" itemprop="url">
+  
+    <h1 itemprop="name">值类型与引用类型</h1>
+    
+     
+           <p itemprop="description" >通俗的说，值类型可以直接取值，而引用类型需要先进行地址解析后才能取值。
+  值类型变量在栈上分配空间，空间存的是变量的值；引用类型在堆上分配对值的引用，存放的是变量的地址。
+  下面通过代码来加深理解：  123456789101112131415161718192021publ</p>
+        
+    
+    <time datetime="2015-05-08T02:37:47.000Z" itemprop="datePublished">2015-05-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/post/Socket通信模式与行为/" title="Socket通信模式与行为" itemprop="url">
+  
+    <h1 itemprop="name">Socket通信模式与行为</h1>
+    
+     
+           <p itemprop="description" >#Socket有两种通信方式：阻塞模式和非阻塞模式
+##阻塞模式  阻塞模式就是开启一个线程一直保持侦听状态(通过while(true)循环)，这样该线程将一直在这个循环里运行，不会退出，因此
+该线程将被该循环所阻塞，是为阻塞模式。使用该模式进行通信时，必须开启一个新线程，不能将</p>
+        
+    
+    <time datetime="2015-04-22T03:33:30.000Z" itemprop="datePublished">2015-04-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/post/Hadoop-map-reduce/" title="Hadoop map-reduce" itemprop="url">
+  
+    <h1 itemprop="name">Hadoop map-reduce</h1>
+    
+     
+           <p itemprop="description" ></p>
+        
+    
+    <time datetime="2015-04-13T05:53:31.000Z" itemprop="datePublished">2015-04-13</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -83,11 +167,85 @@
 <aside class="clearfix">
 
   
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
+		
+			<li><a href="/categories/入门基础/" title="入门基础">入门基础<sup>1</sup></a></li>
+		
+			<li><a href="/categories/基础概念/" title="基础概念">基础概念<sup>7</sup></a></li>
+		
+			<li><a href="/categories/大数据处理/" title="大数据处理">大数据处理<sup>1</sup></a></li>
+		
+			<li><a href="/categories/无线通信/" title="无线通信">无线通信<sup>1</sup></a></li>
+		
+			<li><a href="/categories/算法学习/" title="算法学习">算法学习<sup>1</sup></a></li>
+		
+			<li><a href="/categories/编程基础/" title="编程基础">编程基础<sup>2</sup></a></li>
+		
+			<li><a href="/categories/编程练习/" title="编程练习">编程练习<sup>8</sup></a></li>
+		
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>6</sup></a></li>
+		
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
 
   
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/C-网络编程——第一篇-基础之进程线程/" title="C#网络编程——第一篇 基础之进程线程">C#网络编程——第一篇 基础之进程线程<sup>1</sup></a></li>
+		
+			<li><a href="/tags/C-C/" title="C/C++">C/C++<sup>9</sup></a></li>
+		
+			<li><a href="/tags/C语言/" title="C语言">C语言<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Makefile与Shell/" title="Makefile与Shell">Makefile与Shell<sup>1</sup></a></li>
+		
+			<li><a href="/tags/MarkDown新手指南/" title="MarkDown新手指南">MarkDown新手指南<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Socket网络编程常见异常及解决方法/" title="Socket网络编程常见异常及解决方法">Socket网络编程常见异常及解决方法<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Socket通信原理与实践/" title="Socket通信原理与实践">Socket通信原理与实践<sup>1</sup></a></li>
+		
+			<li><a href="/tags/TCP/" title="TCP">TCP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
+		
+			<li><a href="/tags/linux/" title="linux">linux<sup>2</sup></a></li>
+		
+			<li><a href="/tags/linux-epoll/" title="linux epoll">linux epoll<sup>1</sup></a></li>
+		
+			<li><a href="/tags/关于NRF24L01与WIFI通信原理的思考/" title="关于NRF24L01与WIFI通信原理的思考">关于NRF24L01与WIFI通信原理的思考<sup>1</sup></a></li>
+		
+			<li><a href="/tags/分布式计算编程/" title="分布式计算编程">分布式计算编程<sup>1</sup></a></li>
+		
+			<li><a href="/tags/操作系统/" title="操作系统">操作系统<sup>1</sup></a></li>
+		
+			<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+		
+			<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+		
+			<li><a href="/tags/服务器cache与对象/" title="服务器cache与对象">服务器cache与对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/桥接模式/" title="桥接模式">桥接模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/计算机组成原理/" title="计算机组成原理">计算机组成原理<sup>1</sup></a></li>
+		
+			<li><a href="/tags/计算机网络/" title="计算机网络">计算机网络<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
@@ -101,16 +259,25 @@
 	</div>
 	
 	
+	<section class="info">
+		<p> Hello, I&#39;m ZG. This is my blog on Gitbub. <br/>
+			no more no better</p>
+	</section>
+	 
 	<div class="social-font clearfix">
 		
+		<a href="http://weibo.com/少年木心" target="_blank" title="weibo"></a>
 		
+		
+		
+		<a href="https://github.com/fblq" target="_blank" title="github"></a>
 		
 		
 		
 	</div>
 		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
 		
-		<a href="http://yoursite.com" target="_blank" title="zhong.zhou">zhong.zhou</a>
+		<a href="http://fblq-zg.github.io" target="_blank" title="zhong.zhou">zhong.zhou</a>
 		
 		</p>
 </div>
