@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | 行者</title>
+    <title>Socket网络编程常见异常及解决方法 | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="#常见异常
+Socket.Bind（EndPoint localEP）时Socket Exception
+Socket.Socket(AddressFamily addressFamily,SocketType socketType,ProtocolType protocolType)时Socket">
     
     
     
@@ -71,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/post/Socket网络编程常见异常及解决方法/" title="Socket网络编程常见异常及解决方法" itemprop="url">Socket网络编程常见异常及解决方法</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-07T16:27:31.467Z" itemprop="datePublished">2015-08-08</time>
-    更新日期:<time datetime="2015-08-07T16:27:31.467Z" itemprop="dateModified">2015-08-08</time>
+    <time datetime="2015-03-10T00:21:01.000Z" itemprop="datePublished">2015-03-10</time>
+    更新日期:<time datetime="2015-03-25T05:36:56.000Z" itemprop="dateModified">2015-03-25</time>
     
   </p>
 </header>
@@ -88,28 +90,36 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>#常见异常</p>
+<pre><code><span class="keyword">Socket</span>.Bind（EndPoint localEP）时<span class="keyword">Socket</span> Exception
+<span class="keyword">Socket</span>.<span class="keyword">Socket</span>(AddressFamily addressFamily,SocketType socketType,ProtocolType protocolType)时<span class="keyword">Socket</span> Exception
+</code></pre><p>#供参考的解决方法</p>
+<p>1.本机有多个网络接口时，建立通信端点IpEndPoint时，参数IPAddress错误，Bind（）函数绑定在无效IPAddress上，发生异常，原因是未开启相应的网络接口，建议先写一段代码来输出本机的所有网络接口，然后再来排除异常，参考代码如下：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">include</span> &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#<span class="keyword">include</span> <span class="string">"winsock2.h"</span></span><br><span class="line">#pragma comment(lib,<span class="string">"ws2_32.lib"</span>)</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	WSAData data;</span><br><span class="line">	<span class="keyword">if</span>(WSAStartup(MAKEWORD(1,1),&amp;data)!=0) <span class="comment">//检查初始化windows socketsDLL是否成功</span></span><br><span class="line">&#123;</span><br><span class="line">  		cout&lt;&lt;"初始化错误endl ;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">char</span> host[255];</span><br><span class="line"><span class="comment">//获取本地主机名，gethostname获取的主机名可以传入gethostbyname，获取主机名列表</span></span><br><span class="line"><span class="keyword">if</span>(gethostname(host,sizeof(host))==SOCKET_ERROR) </span><br><span class="line">&#123;</span><br><span class="line">  		cout&lt;&lt;<span class="string">"无法获取主机名"</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">  		cout&lt;&lt;<span class="string">"本机计算机名为:"</span>&lt;&lt;host&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//gethostbyname的返回值送入hostent结构体</span></span><br><span class="line">struct hostent *p=gethostbyname(host);</span><br><span class="line"><span class="keyword">if</span>(p==0)</span><br><span class="line">&#123;</span><br><span class="line"> 	 cout&lt;&lt;<span class="string">"无法获取计算机主机名及IP"</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">  	<span class="comment">//本机IP:利用循环,输出本机所有IP</span></span><br><span class="line">  	<span class="keyword">for</span>(int i=0;p-&gt;h_addr_list[i]!=0;i++)</span><br><span class="line">  	&#123;</span><br><span class="line">   	struct in_addr <span class="keyword">in</span>;</span><br><span class="line">  		memcpy(&amp;<span class="keyword">in</span>,p-&gt;h_addr_list[i],sizeof(struct in_addr));</span><br><span class="line">   	cout&lt;&lt;<span class="string">"第"</span>&lt;&lt;i+1&lt;&lt;<span class="string">"块网卡的IP为:"</span>&lt;&lt;inet_ntoa(<span class="keyword">in</span>)&lt;&lt;endl;</span><br><span class="line">  	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">WSACleanup();</span><br><span class="line"></span><br><span class="line">cin.<span class="literal">get</span>();</span><br><span class="line"><span class="keyword">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.Socket()的参数不正确，一般情况下，将AddressFamily改为IPV4协议族，然后将SocketType和ProtocolType对应上就能排除异常。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Socket网络编程常见异常及解决方法/">Socket网络编程常见异常及解决方法</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/网络编程/">网络编程</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/hello-world/" data-title="Hello World | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/Socket网络编程常见异常及解决方法/" data-title="Socket网络编程常见异常及解决方法 | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -118,11 +128,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/操作系统的基础知识/" title="操作系统的基础知识">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  操作系统的基础知识</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/post/shell命令学习/"  title="shell命令学习">
+<a href="/post/MarkDown新手指南/"  title="MarkDown新手指南">
  <strong>NEXT:</strong><br/> 
- <span>shell命令学习
+ <span>MarkDown新手指南
 </span>
 </a>
 </div>
@@ -139,7 +157,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">

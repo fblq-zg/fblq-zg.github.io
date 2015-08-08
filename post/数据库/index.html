@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | 行者</title>
+    <title>数据库 | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="数据库的开发周期：需求分析、概念设计、逻辑层设计、物理层设计、数据库建立、后期管理与维护数据库系统：数据结构（静态）、数据操作（动态）、数据约束（概念模型、逻辑模型、物理模型）
+1) 硬编码（完整性）（用户定值代替可变变量）2）更新操作的原子性（数据备份、系统还原）3）数据冗余、数据的一致性（数据的">
     
     
     
@@ -71,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/post/数据库/" title="数据库" itemprop="url">数据库</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-07T16:27:31.467Z" itemprop="datePublished">2015-08-08</time>
-    更新日期:<time datetime="2015-08-07T16:27:31.467Z" itemprop="dateModified">2015-08-08</time>
+    <time datetime="2015-03-12T12:50:58.000Z" itemprop="datePublished">2015-03-12</time>
+    更新日期:<time datetime="2015-04-07T10:34:54.000Z" itemprop="dateModified">2015-04-07</time>
     
   </p>
 </header>
@@ -88,28 +89,36 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>数据库的开发周期：需求分析、概念设计、逻辑层设计、物理层设计、数据库建立、后期管理与维护<br>数据库系统：数据结构（静态）、数据操作（动态）、数据约束<br>（概念模型、逻辑模型、物理模型）</p>
+<p>1) 硬编码（完整性）（用户定值代替可变变量）<br>2）更新操作的原子性（数据备份、系统还原）<br>3）数据冗余、数据的一致性（数据的更新时间）<br>4）数据获取的难度（关键值、链表）<br>5）多用户并发访问（用户访问锁）<br>6）数据安全（用户权限、标志位）<br>7）数据孤立（不符合一般的数据模型）<br>8）数据完整性（实体、域、参照、用户自定义）</p>
+<p>DBMS is the core of DBS</p>
+<p>软件工程中的思想:集中、共享、封装、重用、解耦<br>集中：规定存储位置，防止数据冗余和不一致。<br>共享：多用户并发访问。<br>封装：分离数据与数据间的操作，隐藏实现的细节，只向用户提供访问的接口。<br>重用：设计模式、方法的重用<br>解耦：封装、接口</p>
+<p>数据结构和数据库的区别：<br>数据结构是数据的组织形式，数据之间的联系。<br>数据库是按照数据结构组织、管理和存储数据的仓库。</p>
+<p>数据库的三层结构：物理层、逻辑层、视图层</p>
+<p>实体完整性：主码的每个属性为非空。<br>事务：原子性、一致性、隔离性、持久性<br>事务的开始与回滚  （日志文件）</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/数据库/">数据库</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/基础概念/">基础概念</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/hello-world/" data-title="Hello World | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/数据库/" data-title="数据库 | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -118,11 +127,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/post/计算机网路/" title="计算机网路">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  计算机网路</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/post/shell命令学习/"  title="shell命令学习">
+<a href="/post/数据结构/"  title="数据结构">
  <strong>NEXT:</strong><br/> 
- <span>shell命令学习
+ <span>数据结构
 </span>
 </a>
 </div>
@@ -139,7 +156,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">

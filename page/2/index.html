@@ -70,95 +70,114 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/hello-world/" title="Hello World" itemprop="url">
+    <a href="/post/I-O操作基础/" title="I/O操作基础" itemprop="url">
   
-    <h1 itemprop="name">Hello World</h1>
+    <h1 itemprop="name">I/O操作基础</h1>
     
      
-           <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
+           <p itemprop="description" >I/O的工作方式：阻塞I/O、非阻塞I/O、复用I/O、同步信号I/O、异步I/O
+I/O操作：
+
+数据准备（内核准备数据供I/O操作使用）
+数据拷贝（将内核中的数据拷贝到用户进程）
+
+阻塞I/O：用户进程向CPU发送I/O请求，在CPU没有准备好数据之前，不会向进程返回任何信息</p>
         
     
-    <time datetime="2015-08-07T16:27:31.467Z" itemprop="datePublished">2015-08-08</time>
+    <time datetime="2015-04-06T01:54:45.000Z" itemprop="datePublished">2015-04-06</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/shell命令学习/" title="shell命令学习" itemprop="url">
+    <a href="/post/事件与委托/" title="事件与委托" itemprop="url">
   
-    <h1 itemprop="name">shell命令学习</h1>
+    <h1 itemprop="name">事件与委托</h1>
     
      
-           <p itemprop="description" >1）找出机器中所有硬盘个数及设备名称：fdisk -l;2）更改主机名称：uname -a; hostname;3）修改步骤：        ①hostname oldname;（这步修改临时有效，重启后会失效）        ②修改etc/sysconfig/networks中</p>
+           <p itemprop="description" >事件与委托的概念理解：  事件是对象间交流的消息，可以理解为对象在某一个时刻的状态；委托充当代理人，当消息的管道，可以让一个对象的消息作用于多个对象。
+委托的使用方法：
+
+定义方法的委托（private delegate void UpdateUICallBack();）
+声明委</p>
         
     
-    <time datetime="2015-07-16T01:12:59.000Z" itemprop="datePublished">2015-07-16</time>
+    <time datetime="2015-04-05T12:21:23.000Z" itemprop="datePublished">2015-04-05</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/设计模式之桥接模式/" title="设计模式之桥接模式" itemprop="url">
+    <a href="/post/一致性Hash算法/" title="一致性Hash算法" itemprop="url">
   
-    <h1 itemprop="name">设计模式之桥接模式</h1>
+    <h1 itemprop="name">一致性Hash算法</h1>
     
      
-           <p itemprop="description" ></p>
+           <p itemprop="description" >consistent hashing 算法早在 1997 年就在论文 Consistent hashing and random trees 中被提出，目前在 cache 
+系统中应用越来越广泛；
+#1 基本场景  比如你有 N 个 cache 服务器（后面简称 cache ），</p>
         
     
-    <time datetime="2015-05-10T07:40:39.000Z" itemprop="datePublished">2015-05-10</time>
+    <time datetime="2015-04-03T12:17:43.000Z" itemprop="datePublished">2015-04-03</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/值类型与引用类型/" title="值类型与引用类型" itemprop="url">
+    <a href="/post/构造函数与析构函数/" title="构造函数与析构函数" itemprop="url">
   
-    <h1 itemprop="name">值类型与引用类型</h1>
+    <h1 itemprop="name">构造函数与析构函数</h1>
     
      
-           <p itemprop="description" >通俗的说，值类型可以直接取值，而引用类型需要先进行地址解析后才能取值。
-  值类型变量在栈上分配空间，空间存的是变量的值；引用类型在堆上分配对值的引用，存放的是变量的地址。
-  下面通过代码来加深理解：  123456789101112131415161718192021publ</p>
+           <p itemprop="description" >#实战一：动态类型转换
+class A {
+    public:
+    ~A() {
+        cout &amp;lt;&amp;lt; &quot;~A()&quot;;
+    }
+};
+class B{
+    public:
+    virtual ~B() {
+    cout &amp;lt;&amp;lt</p>
         
     
-    <time datetime="2015-05-08T02:37:47.000Z" itemprop="datePublished">2015-05-08</time>
+    <time datetime="2015-04-02T05:30:38.000Z" itemprop="datePublished">2015-04-02</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/Socket通信模式与行为/" title="Socket通信模式与行为" itemprop="url">
+    <a href="/post/数据存储理解/" title="数据存储理解" itemprop="url">
   
-    <h1 itemprop="name">Socket通信模式与行为</h1>
+    <h1 itemprop="name">数据存储理解</h1>
     
      
-           <p itemprop="description" >#Socket有两种通信方式：阻塞模式和非阻塞模式
-##阻塞模式  阻塞模式就是开启一个线程一直保持侦听状态(通过while(true)循环)，这样该线程将一直在这个循环里运行，不会退出，因此
-该线程将被该循环所阻塞，是为阻塞模式。使用该模式进行通信时，必须开启一个新线程，不能将</p>
+           <p itemprop="description" >#实战一：大小端问题12345678910111213//数据存储//解释一下原码、补码、反码union Test &amp;#123;    char a[4];    short b; &amp;#125;; Test test; test.a[0]=256; test.a[1]=255; </p>
         
     
-    <time datetime="2015-04-22T03:33:30.000Z" itemprop="datePublished">2015-04-22</time>
+    <time datetime="2015-04-02T03:22:22.000Z" itemprop="datePublished">2015-04-02</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/post/Hadoop-map-reduce/" title="Hadoop map-reduce" itemprop="url">
+    <a href="/post/指针运算/" title="指针运算" itemprop="url">
   
-    <h1 itemprop="name">Hadoop map-reduce</h1>
+    <h1 itemprop="name">指针运算</h1>
     
      
-           <p itemprop="description" ></p>
+           <p itemprop="description" >#实战一：深入理解不同数据类型的字节长度及内存分配单元的比较
+12345678910111213141516171819202122232425char arr[] = &amp;#123;&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;4&#39;,&#39;5&#39;,&#39;6&#39;,&#39;7&#39;,&#39;8&#39;,&#39;9&#39;&amp;#125;;   int </p>
         
     
-    <time datetime="2015-04-13T05:53:31.000Z" itemprop="datePublished">2015-04-13</time>
+    <time datetime="2015-04-01T13:20:36.000Z" itemprop="datePublished">2015-04-01</time>
   </a>
 </section>
 
 
   <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </div>
