@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Hello World | 行者</title>
+    <title>SpringMVC学习篇（一） | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
+    <meta name="description" content="##SpringMVC简介  SpringMVC是一个基于请求-响应模型的开发框架，作为表现层框架，它遵循开闭原则，以原生的servlet框架对象为依托，通过合理的抽象，制订了严谨的请求处理流程，开发者能够在其基础上进行简单便捷的开发。此外，SpringMVC遵循servlet世界里最简单的原则，即">
     
     
     
@@ -71,15 +71,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/post/SpringMVC学习篇（一）/" title="SpringMVC学习篇（一）" itemprop="url">SpringMVC学习篇（一）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-07T16:27:31.467Z" itemprop="datePublished">2015-08-08</time>
-    更新日期:<time datetime="2015-08-07T16:27:31.467Z" itemprop="dateModified">2015-08-08</time>
+    <time datetime="2015-08-16T04:52:44.000Z" itemprop="datePublished">2015-08-16</time>
+    更新日期:<time datetime="2015-08-16T07:50:28.506Z" itemprop="dateModified">2015-08-16</time>
     
   </p>
 </header>
@@ -88,28 +88,37 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+		
 		</div>
 		
-		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+		<p>##SpringMVC简介<br>  SpringMVC是一个基于请求-响应模型的开发框架，作为表现层框架，它遵循开闭原则，以原生的servlet框架对象为依托，通过合理的抽象，制订了严谨的请求处理流程，开发者能够在其基础上进行简单便捷的开发。此外，SpringMVC遵循servlet世界里最简单的原则，即“init-service-destory”。</p>
+<p>##需要解决的问题：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">框架到<span class="built_in">URL</span>的映射</span><br><span class="line">HTTP请求参数的绑定</span><br><span class="line">HTTP响应的输入和输出</span><br></pre></td></tr></table></figure></p>
+<p>##SpringMVC做的事情</p>
+<p>###解决开发问题<br>  首要任务是HTTP请求的处理，包括URL映射、参数绑定和响应。想弄清它解决的问题，需要从核心类DispatcherServlet开始学习，明白其生命周期。<br>  DispatcherServlet类作为前端控制器，在其实例的整个生命周期中，控制着HandlerMapping类、HandlerExecutionChain类、HandlerInterceptor类、HandlerAdapter类、ModelAndView类等的协调工作，完成一次请求。<br>  实际编码中，@Controller注解标注类的实例调用期间发生了什么，大致如下图所示：<br>  <img src="D:\software\Cup\hexo\source\img\SpringMVC架构.JPG" alt=""><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>根据xml配置文件，servlet实例在容器中完成init。</span><br><span class="line"><span class="number">2.</span>Spring容器拦截请求，将请求交给DispatcherServlet实例。</span><br><span class="line"><span class="number">3.</span>DispatcherServlet实例通过调用getHandler(HttpServletRequest request)方法遍历HandlerMapping类的实现列表，并将请求委托给内部框架处理单元HandlerMapping，生成HandlerExecutionChain对象，这步完成框架到URL的映射。</span><br><span class="line"><span class="number">4.</span>HandlerExecutionChain类中注册了一个handler对象和一个HandlerInterceptor列表，通过拦截器绑定参数，生成handler对象，返回到前端控制器DispatcherServlet。</span><br><span class="line"><span class="number">5.</span>前端控制器DispatcherServlet通过调用getHandlerAdapter(Object handler)方法遍历HandlerAdapter类的实现列表，返回<span class="literal">true</span>的HandlerAdapter对象，委托给内部框架处理单元HandlerAdapter进行处理。</span><br><span class="line"><span class="number">6.</span>调用handler方法处理handler对象，返回包含视图和数据的ModelAndView对象到前端控制器。</span><br><span class="line"><span class="number">7.</span>前端控制器DispatcherServlet委派核心接口view类调用render方法进行视图渲染。</span><br><span class="line">（前端控制器：DispatcherServlet负责SpringMVC具体编程元素的初始化策略，FrameworkServlet负责容器上下文的创建，HttpServletBean负责&lt;init-param&gt;配置元素的依赖注入）</span><br></pre></td></tr></table></figure></p>
+<p>###集大成者<br>  整个SpringMVC框架都是依托servlet容器元素设计的，除了解决开发的基本问题外，它还做了如下工作：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>开闭原则，具有良好的扩展性。</span><br><span class="line"><span class="number">2.</span>汲取Struct2的精华，合理地设计拦截器。</span><br></pre></td></tr></table></figure></p>
+<p>##设计思想<br>1.父类抽象处理流程，子类给予具体实现方法。<br>2.类中的方法均已接口的形式给出，<br>3.模板设计原则，进行职责分工。</p>
+<p>##SpringMVC学习启发<br>1.在框架的基础上，通过派生的方法重写父类中的方法。<br>2.熟练请求处理流程，添加适当的操作。</p>
+<p>学习链接：<img src="http://my.oschina.net/lichhao/blog?catalog=285356" alt="SpringMVC源码剖析"><br>致谢，祝好！</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/俯瞰SpringMVC/">俯瞰SpringMVC</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java架构/">Java架构</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/hello-world/" data-title="Hello World | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/SpringMVC学习篇（一）/" data-title="SpringMVC学习篇（一） | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -118,14 +127,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/SpringMVC学习篇（一）/" title="SpringMVC学习篇（一）">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  SpringMVC学习篇（一）</span>
+
+<div class="next">
+<a href="/post/hello-world/"  title="Hello World">
+ <strong>NEXT:</strong><br/> 
+ <span>Hello World
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -139,7 +148,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+  
   </div>
 
 <div id="asidepart">
