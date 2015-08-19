@@ -87,7 +87,7 @@ Spring Web MVC优势
     </p>
   <p class="article-time">
     <time datetime="2015-08-19T06:38:09.000Z" itemprop="datePublished">2015-08-19</time>
-    更新日期:<time datetime="2015-08-19T07:04:52.043Z" itemprop="dateModified">2015-08-19</time>
+    更新日期:<time datetime="2015-08-19T07:06:21.022Z" itemprop="dateModified">2015-08-19</time>
     
   </p>
 </header>
@@ -115,7 +115,7 @@ Spring Web MVC优势
 </ol>
 <hr>
 <h2 id="Spring_Web_MVC架构">Spring Web MVC架构</h2><h3 id="请求-响应模型">请求-响应模型</h3><hr>
-<p>Spring Web MVC是一个基于请求驱动的Web框架，使用了前端控制器模式进行设计，根据请求映射规则分发给相应的页面控制器进行处理，请求-响应模型如下图所示。<br>！<a href="\img\SpringMVC请求响应模型.jpg">SpringMVC请求响应模型</a><br>具体执行步骤如下：</p>
+<p>Spring Web MVC是一个基于请求驱动的Web框架，使用了前端控制器模式进行设计，根据请求映射规则分发给相应的页面控制器进行处理，请求-响应模型如下图所示。<br><img src="\img\SpringMVC请求响应模型.jpg" alt="SpringMVC请求响应模型"><br>具体执行步骤如下：</p>
 <ol>
 <li>首先用户发送请求—&gt;前端控制器，前端控制器根据请求信息（如URL）来决定选择哪一个页面控制器进行处理并把请求委托给它，即以前的控制器的控制逻辑部分；图中的1、2步骤；</li>
 <li>页面控制器接收到请求后，进行功能处理，首先需要收集和绑定请求参数到一个对象，这个对象在Spring Web MVC中叫命令对象，并进行验证，然后将命令对象委托给业务对象进行处理；处理完毕后返回一个ModelAndView（模型数据和逻辑视图名）；图中的3、4、5步骤；</li>
