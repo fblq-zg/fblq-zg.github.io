@@ -4,22 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>后端管理理解篇（一） | 行者</title>
+    <title>I/O基础学习篇（一） | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="基本目的
-处理前端的请求，将后端的资源通过一定的形式展现在前端，同时通过前端的页面来操作后端的资源。
-
-一次完整http请求
-
-建立TCP连接
-用户发出http请求：浏览器中输入URL
-DNS解析
-服务器响应http请求，返回一个HTML页面
-资源解析
-请求完一个页面的所有资源并得到响应后，进行页面">
+    <meta name="description" content="I/O操作I/O                                            ${venderList.venderId}.${venderList.venderName}                                    $(“#venderDrags">
     
     
     
@@ -81,15 +71,15 @@ DNS解析
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/后端管理理解篇（一）/" title="后端管理理解篇（一）" itemprop="url">后端管理理解篇（一）</a>
+      <a href="/post/I-O基础学习篇（一）/" title="I/O基础学习篇（一）" itemprop="url">I/O基础学习篇（一）</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-19T06:41:59.000Z" itemprop="datePublished">2015-08-19</time>
-    更新日期:<time datetime="2015-08-19T07:03:22.000Z" itemprop="dateModified">2015-08-19</time>
+    <time datetime="2015-08-27T12:51:51.000Z" itemprop="datePublished">2015-08-27</time>
+    更新日期:<time datetime="2015-09-07T09:59:45.183Z" itemprop="dateModified">2015-09-07</time>
     
   </p>
 </header>
@@ -98,55 +88,50 @@ DNS解析
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本目的"><span class="toc-number">1.</span> <span class="toc-text">基本目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次完整http请求"><span class="toc-number">2.</span> <span class="toc-text">一次完整http请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC模式"><span class="toc-number">3.</span> <span class="toc-text">MVC模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台管理相关知识的学习"><span class="toc-number">4.</span> <span class="toc-text">后台管理相关知识的学习</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#I/O操作"><span class="toc-number">1.</span> <span class="toc-text">I/O操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I/O"><span class="toc-number">2.</span> <span class="toc-text">I/O</span></a></li></ol>
 		</div>
 		
-		<h2 id="基本目的">基本目的</h2><hr>
-<p>处理前端的请求，将后端的资源通过一定的形式展现在前端，同时通过前端的页面来操作后端的资源。</p>
-<hr>
-<h2 id="一次完整http请求">一次完整http请求</h2><hr>
-<ol>
-<li>建立TCP连接</li>
-<li>用户发出http请求：浏览器中输入URL</li>
-<li>DNS解析</li>
-<li>服务器响应http请求，返回一个HTML页面</li>
-<li>资源解析</li>
-<li>请求完一个页面的所有资源并得到响应后，进行页面的渲染</li>
-<li>排版、渲染后的页面</li>
-</ol>
-<hr>
-<h2 id="MVC模式">MVC模式</h2><hr>
-<p>MVC模式即模型-视图-控制器模式，最典型的是JSP+Servlet+JavaBean模式。<br>模型对应应用程序的数据逻辑部分，视图对应页面的数据显示部分，控制器对应处理用户的交互部分。<br>控制器控制数据的输入、处理和输出，保持视图和模型的数据同步。</p>
-<hr>
-<h2 id="后台管理相关知识的学习">后台管理相关知识的学习</h2><hr>
-<ol>
-<li>配置文件（web.xml、pom.xml）</li>
-<li>后端获取前端的资源路径</li>
-<li>Mybatis的对象关系映射（ORM）</li>
-<li>HTML页面的C标签、javascript</li>
-<li>管理工具maven、SVN</li>
-</ol>
-<p>Pom：基于项目对象模型，用xml文件来表示项目，用pom.xml来实现，包括项目的依赖、URL、需要遵循的规则、缺陷管理等。</p>
-  
+		<h2 id="I/O操作">I/O操作</h2><h2 id="I/O">I/O</h2><p><ul class="dragsort" id="venderDragsort"><br>                    <c:foreach items="${venderList}" var="venderList" varstatus="s"><br>                        <li>${venderList.venderId}.${venderList.venderName}</li><br>                    </c:foreach><br>                </ul><br>$(“#venderDragsort”).dragsort({<br>            dragSelector: “li”,<br>            dragEnd: function(){},<br>            dragBeween: false,<br>            placeHolderTemplate: “<li></li>“,<br>            scrollSpeed: 10<br>        });<br>        $(‘.select_vender’).change(function() {<br>            if($(this).attr(‘checked’)==true){<br>                var newLi = “<li idx="" +$(this).attr(" value')="" +="" "'="">“ + $(this).attr(‘svalue’)+”</li><li>“<br>                $(“#venderDragsort”).append(newLi);<br>            }<br>            else{<br>                var venderId = $(this).attr(‘value’);<br>                $(“#venderDragsort”).find(“li[idx=” + venderId +”]”).remove();<br>            }<br>        }); </li></p>
+<pre><code>$('.sortResult').change(function(){
+    <span class="keyword">var</span> <span class="literal">result</span>[];
+    $(this).each(i,e)
+    {
+        <span class="literal">result</span>.push($(this).attr('idx'));
+    }
+    console.log(<span class="literal">result</span>);
+});
+
+&lt;script defer=<span class="string">"defer"</span>&gt;
+<span class="keyword">var</span> temp=$('.select_vender');
+$(temp).each(function(i, e){
+    <span class="keyword">if</span>($(e).attr('checked')==<span class="literal">true</span>)
+        <span class="type">array</span>.push($(e).attr('value'));
+});
+</code></pre><p></p>
+<p>$(‘form’).bind(“submit”,function(){<br>            var result = [];<br>            $(‘#venderDragsort’).find(“li”).each(function(i,e){<br>                var v = $(e).attr(‘idx’);<br>                if(typeof v != ‘undefined’ &amp;&amp; v.length &gt; 0){<br>                    result.push(v);<br>                }<br>            });<br>            console.log(result.join(“,”));<br>            alert(result.join(“,”));<br>            $(“#hide_venderIds”).attr(“value”, result.join(“,”));<br>            return true;<br>        });</p>
+<p>$(‘#li’).each(function(i,e){<br>    $(e).attr(‘idx’);<br>});</p>
+<if test="createTime != null and createTime.trim().length() >0"><br>            and &lt;![CDATA[ createTime &gt;= convert(varchar(19),#{createTime},120) ]]&gt;<br>        </if><br>        <if test="updateTime != null and updateTime.trim().length() >0"><br>            and &lt;![CDATA[ updateTime &lt;= convert(varchar(19),#{updateTime},120)]]&gt;<br>        </if>
+
+<tr><br>                <td class="td_x_bg">创建时间：</td><br>                <td class="td_bg" colspan="2"><br>                    <input id="createTime" name="createTime" type="text" value="<fmt:formatDate value="${payRule.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"><br>                    <img onclick="WdatePicker({el:'createTime',dateFmt:'yyyy-MM-dd HH:mm:ss'})" src="http://localhost.qunar.com:8080/common/js/skin/datePicker.gif" width="16" height="22" align="middle"><br>                </td><br>            </tr><br>            <tr><br>                <td class="td_x_bg">更新时间：</td><br>                <td class="td_bg" colspan="2"><br>                    <input id="updateTime" name="updateTime" type="text" value="<fmt:formatDate value="${payRule.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"><br>                    <img onclick="WdatePicker({el:'updateTime',dateFmt:'yyyy-MM-dd HH:mm:ss'})" src="http://localhost.qunar.com:8080/common/js/skin/datePicker.gif" width="16" height="22" align="middle"><br>                </td><br>            </tr>  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/初学理解篇/">初学理解篇</a>
+  <span></span> <a href="/tags/网络I-O基础/">网络I/O基础</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/后端/">后端</a>
+  <a class="article-category-link" href="/categories/网络编程/">网络编程</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/后端管理理解篇（一）/" data-title="后端管理理解篇（一） | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/I-O基础学习篇（一）/" data-title="I/O基础学习篇（一） | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -156,18 +141,18 @@ DNS解析
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/hello-world/" title="Hello World">
+ <a href="/post/数据库索引学习篇（一）/" title="数据库索引学习篇（一）">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Hello World</span>
+  数据库索引学习篇（一）</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/post/SpringMVC学习篇（二）/"  title="SpringMVC学习篇（二）">
+<a href="/post/servlet学习篇（一）/"  title="servlet学习篇（一）">
  <strong>NEXT:</strong><br/> 
- <span>SpringMVC学习篇（二）
+ <span>servlet学习篇（一）
 </span>
 </a>
 </div>
@@ -184,7 +169,7 @@ DNS解析
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本目的"><span class="toc-number">1.</span> <span class="toc-text">基本目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次完整http请求"><span class="toc-number">2.</span> <span class="toc-text">一次完整http请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC模式"><span class="toc-number">3.</span> <span class="toc-text">MVC模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台管理相关知识的学习"><span class="toc-number">4.</span> <span class="toc-text">后台管理相关知识的学习</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#I/O操作"><span class="toc-number">1.</span> <span class="toc-text">I/O操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I/O"><span class="toc-number">2.</span> <span class="toc-text">I/O</span></a></li></ol>
   </div>
 
 <div id="asidepart">

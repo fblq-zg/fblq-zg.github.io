@@ -1,0 +1,366 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>注解学习篇（一） | 行者</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="zhong.zhou">
+    
+    <meta name="description" content="注解的背景及来源
+通过xml的bean定义配置组件，如果遇到上千个组件，xml配置文件会很大，不方便进行查找和维护。spring2.5引入组件自动扫描机制，它可以在类路径下查找标注了@Component、@Service、@Controller、@Respository的类，并把这些类放入sprin">
+    
+    
+    
+    
+    <link rel="alternate" href="/atom.xml" title="行者" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="行者" title="行者"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="行者">行者</a></h1>
+				<h2 class="blog-motto">不疾则速</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/index">索引</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">简介</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:fblq-zg.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/post/注解学习篇（一）/" title="注解学习篇（一）" itemprop="url">注解学习篇（一）</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-09-21T09:32:05.000Z" itemprop="datePublished">2015-09-21</time>
+    更新日期:<time datetime="2015-09-21T12:22:06.328Z" itemprop="dateModified">2015-09-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li></ol>
+		</div>
+		
+		<h2 id="注解的背景及来源">注解的背景及来源</h2><hr>
+<p>通过xml的bean定义配置组件，如果遇到上千个组件，xml配置文件会很大，不方便进行查找和维护。<br>spring2.5引入组件自动扫描机制，它可以在类路径下查找标注了@Component、@Service、@Controller、@Respository的类，并把这些类放入spring容器中进行管理，它的作用和在xml中使用bean节点配置组件是一样的。</p>
+<hr>
+<h2 id="常用的类注解">常用的类注解</h2><hr>
+<blockquote>
+<p>@Compoment泛指组件，当组件不好归类时，用@Compoment进行注解；<br>@Service通常用于标注业务层的Bean，例如接口组件；<br>@Controller通常用于标注控制层的Bean，例如控制器组件；<br>@Respository同城用于标注持久层的Bean，例如Dao组件。</p>
+</blockquote>
+<hr>
+<h2 id="@Resource注解原理">@Resource注解原理</h2><hr>
+<h3 id="@Resource标注字段或者方法">@Resource标注字段或者方法</h3><ol>
+<li>如果指定了name属性，则按照name属性进行装配；</li>
+<li>如果没有指定name属性，则按照默认名称查找依赖对象；</li>
+<li>如果按照默认名称查找不到依赖对象，则根据类型进行装配。</li>
+</ol>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">public class ClassPathXMLApplicationContext&#123;</span><br><span class="line">	private List&lt;BeanDefinition&gt; BeanDefines = new ArrayList&lt;BeanDefinition&gt;<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	private Map&lt;String,Object&gt; sigletons = new HashMap&lt;String,Object&gt;<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	public ClassPathXMLApplicationContext<span class="params">(String fileName)</span>&#123;</span><br><span class="line">		this.readXML<span class="params">(fileName)</span>;</span><br><span class="line">		this.instanceBeans<span class="params">()</span>;</span><br><span class="line">		this.annotationInject<span class="params">()</span>;</span><br><span class="line">		this.injectObject<span class="params">()</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	private void annotationInject<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(String beanName : sigletons.keySet<span class="params">()</span>)</span>&#123;</span><br><span class="line">			Object bean = sigletons.get<span class="params">(beanName)</span>;</span><br><span class="line">			<span class="keyword">if</span><span class="params">(bean!=null)</span></span><br><span class="line">			&#123;</span><br><span class="line">				try&#123;</span><br><span class="line">					PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescriptors<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>&#123;</span><br><span class="line">						Method setter = properdesc.getWriteMethod<span class="params">()</span>;</span><br><span class="line">						<span class="keyword">if</span><span class="params">(setter!=null&amp;&amp;setter.idAnnotationPresent<span class="params">(MyResource.class)</span>)</span>&#123;</span><br><span class="line">							MyResource resource = setter.getAnnotation<span class="params">(MyResource.class)</span>;</span><br><span class="line">							Object injectBean= null;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								injectBean = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;</span><br><span class="line">							&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">								injectBean = sigletons.get<span class="params">(properdesc.getName<span class="params">()</span>)</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(injectBean==null)</span>&#123;</span><br><span class="line">									<span class="keyword">for</span><span class="params">(String key: sigletons.keySet<span class="params">()</span>)</span>&#123;</span><br><span class="line">										<span class="keyword">if</span><span class="params">(properdesc.getPropertyType<span class="params">()</span>.isAssignableForm<span class="params">(singletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">											injectBean = sigletons.get<span class="params">(key)</span>;</span><br><span class="line">											break;</span><br><span class="line">										&#125;</span><br><span class="line">									&#125;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">							setter.setAccessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">							setter.invoke<span class="params">(bean,injectBean)</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					Filed[] fields = bean.getClass<span class="params">()</span>.getDeclaredFields<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(Field field:fields)</span></span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span><span class="params">(field.isAnnotationPresent<span class="params">(MyResource.class)</span>)</span>&#123;</span><br><span class="line">							MyResource resource = field.getAnnotation<span class="params">(MyResource.class)</span>;</span><br><span class="line">							Object value = null;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								value = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;</span><br><span class="line">							&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">								value = sigletons.get<span class="params">(field.getName<span class="params">()</span>)</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(value == null)</span>&#123;</span><br><span class="line">									<span class="keyword">for</span><span class="params">(String key:sigletons.keyset<span class="params">()</span>)</span>&#123;</span><br><span class="line">										<span class="keyword">if</span><span class="params">(field.getType<span class="params">()</span>.isAssignableForm<span class="params">(sigletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">											value = sigletons.get<span class="params">(key)</span>;</span><br><span class="line">											break;</span><br><span class="line">										&#125;</span><br><span class="line">									&#125;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">							field.setAccessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">							field.set<span class="params">(bean,value)</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">					e.printStackTrace<span class="params">()</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void injectObject<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>&#123;</span><br><span class="line">			Object bean = sigletons.get<span class="params">(beanDefinition.getId<span class="params">()</span>)</span>;</span><br><span class="line">			<span class="keyword">if</span><span class="params">(bean!=null)</span>&#123;</span><br><span class="line">				try&#123;</span><br><span class="line">					PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescription<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(PropertyDefinition propertyDefinition:beanDefinition.getPropertys<span class="params">()</span>)</span>&#123;</span><br><span class="line">						<span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>&#123;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(propertyDefinition.getName<span class="params">()</span>.equals<span class="params">(properdesc.getName<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								Method setter = properdesc.getWriteMethod<span class="params">()</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(setter != null)</span>&#123;</span><br><span class="line">									Object injectBean = null;</span><br><span class="line">									<span class="keyword">if</span><span class="params">(propertyDefinition.getRef<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(propertyDefinition.getRef<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">										injectBean = sigletons.get<span class="params">(propertyDefinition.getRef<span class="params">()</span>)</span>;</span><br><span class="line">									&#125;</span><br><span class="line">									<span class="keyword">else</span>&#123;</span><br><span class="line">										injectBean = ConvertUtils.convert<span class="params">(propertyDefinition.getValue<span class="params">()</span>,properdesc.getPropertyType<span class="params">()</span>)</span>;</span><br><span class="line">									&#125;</span><br><span class="line">									setter.setAcessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">									setter.invoke<span class="params">(bean,injectBean)</span>;</span><br><span class="line">								&#125;</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">					e.printStackTrace<span class="params">()</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void instanceBeans<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>&#123;</span><br><span class="line">			try&#123;</span><br><span class="line">				<span class="keyword">if</span><span class="params">(beanDefinition.getClassName<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(beanDefinition.getClassName<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span></span><br><span class="line">				sigletons.put<span class="params">(beanDefinition.getId<span class="params">()</span>,Class.forName<span class="params">(beanDefinition.getClassName<span class="params">()</span>)</span>.newInstance<span class="params">()</span>)</span>;</span><br><span class="line">			&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">				e.printStackTrace<span class="params">()</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void readXML<span class="params">(String filename)</span>&#123;</span><br><span class="line">		SAXReader saxReader = new SAXReader<span class="params">()</span>;</span><br><span class="line">		Document docement = null;</span><br><span class="line">		try&#123;</span><br><span class="line">			URL xmlpath = this.getClass<span class="params">()</span>.getClassLoader<span class="params">()</span>.getResource<span class="params">(filename)</span>;</span><br><span class="line">			docement = saxReader.read<span class="params">(xmlpath)</span>;</span><br><span class="line">			Map&lt;String, String&gt; nsMap = new HashMap&lt;String,String&gt;<span class="params">()</span>;</span><br><span class="line">			nsMap.put<span class="params">(<span class="string">"ns"</span>,<span class="string">"http://www.springframework.org/schema/beans"</span>)</span>;</span><br><span class="line">			XPath xsub = document.createXPath<span class="params">(<span class="string">"//ns:beans/ns:bean"</span>)</span>;</span><br><span class="line">			xsub.setNamespaceURIs<span class="params">(nsMap)</span>;</span><br><span class="line">			List&lt;Element&gt; beans = xsub.selectNodes<span class="params">(document)</span>;</span><br><span class="line">			<span class="keyword">for</span><span class="params">(Element element:beans)</span>&#123;</span><br><span class="line">				String id = element.attributeValue<span class="params">(<span class="string">"id"</span>)</span>;</span><br><span class="line">				String clazz = element.attributeValue<span class="params">(<span class="string">"class"</span>)</span>;</span><br><span class="line">				BeanDefinition beanDefine = new BeanDefinition<span class="params">(id,clazz)</span>;</span><br><span class="line">				XPath propertysub = element.createXPath<span class="params">(<span class="string">"ns:property"</span>)</span>;</span><br><span class="line">				propertysub.setNamespaceURIs<span class="params">(nsMap)</span>;</span><br><span class="line">				List&lt;Element&gt; propertys = propertysub.selectNodes<span class="params">(element)</span>;</span><br><span class="line">				<span class="keyword">for</span><span class="params">(Element property:propertys)</span>&#123;</span><br><span class="line">					String propertyName = property.attributeValue<span class="params">(<span class="string">"name"</span>)</span>;</span><br><span class="line">					String propertyRef = property.attributeValue<span class="params">(<span class="string">"ref"</span>)</span>;</span><br><span class="line">					String propertyVaule = property.attributeValue<span class="params">(<span class="string">"value"</span>)</span>;</span><br><span class="line">					PropertyDefinition propertyDefinition =  new PropertyDefinition<span class="params">(propertyName,propertyRef,propertyValue)</span>;</span><br><span class="line">					beanDefine.getPropertys<span class="params">()</span>.add<span class="params">(propertyDefinition)</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				beanDefines.add<span class="params">(beanDefine)</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">			e.printStackTrace<span class="params">()</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public Object getBean<span class="params">(String beanName)</span>&#123;</span><br><span class="line">		return this.sigletons.get<span class="params">(beanName)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java配置/">java配置</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Java/">Java</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://fblq-zg.github.io/post/注解学习篇（一）/" data-title="注解学习篇（一） | 行者" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/post/野指针、零指针、NULL指针/"  title="野指针、零指针、NULL指针">
+ <strong>NEXT:</strong><br/> 
+ <span>野指针、零指针、NULL指针
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/Java/" title="Java">Java<sup>7</sup></a></li>
+		
+			<li><a href="/categories/后端/" title="后端">后端<sup>1</sup></a></li>
+		
+			<li><a href="/categories/思想聚集/" title="思想聚集">思想聚集<sup>1</sup></a></li>
+		
+			<li><a href="/categories/指针/" title="指针">指针<sup>1</sup></a></li>
+		
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
+		
+			<li><a href="/categories/网络编程/" title="网络编程">网络编程<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+      <li><a href="http://wsgzao.github.io/" target="_blank" title="wsgzao">wsgzao's blog</a></li>
+      <li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" title="Hexo">hexo blog</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m ZG. This is my blog on Gitbub. <br/>
+			no more no better</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/5607185050" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/fblq-zg" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://fblq-zg.github.io" target="_blank" title="zhong.zhou">zhong.zhou</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fblq"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="���ض���"><img src="/img/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+  </body>
+</html>
