@@ -80,7 +80,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-09-21T09:32:05.000Z" itemprop="datePublished">2015-09-21</time>
-    更新日期:<time datetime="2015-09-25T12:51:01.839Z" itemprop="dateModified">2015-09-25</time>
+    更新日期:<time datetime="2015-09-27T12:23:04.799Z" itemprop="dateModified">2015-09-27</time>
     
   </p>
 </header>
@@ -89,7 +89,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li></ol>
 		</div>
 		
 		<h2 id="注解的背景及来源">注解的背景及来源</h2><hr>
@@ -106,8 +106,151 @@
 <li>如果没有指定name属性，则按照默认名称查找依赖对象；</li>
 <li>如果按照默认名称查找不到依赖对象，则根据类型进行装配。</li>
 </ol>
-<p><pre><code><br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">public class ClassPathXMLApplicationContext&#123;</span><br><span class="line">	private List&lt;BeanDefinition&gt; BeanDefines = new ArrayList&lt;BeanDefinition&gt;<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	private Map&lt;String,Object&gt; sigletons = new HashMap&lt;String,Object&gt;<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">	public ClassPathXMLApplicationContext<span class="params">(String fileName)</span>&#123;</span><br><span class="line">		this.readXML<span class="params">(fileName)</span>;</span><br><span class="line">		this.instanceBeans<span class="params">()</span>;</span><br><span class="line">		this.annotationInject<span class="params">()</span>;</span><br><span class="line">		this.injectObject<span class="params">()</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	private void annotationInject<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(String beanName : sigletons.keySet<span class="params">()</span>)</span>&#123;</span><br><span class="line">			Object bean = sigletons.get<span class="params">(beanName)</span>;</span><br><span class="line">			<span class="keyword">if</span><span class="params">(bean!=null)</span></span><br><span class="line">			&#123;</span><br><span class="line">				try&#123;</span><br><span class="line">					PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescriptors<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>&#123;</span><br><span class="line">						Method setter = properdesc.getWriteMethod<span class="params">()</span>;</span><br><span class="line">						<span class="keyword">if</span><span class="params">(setter!=null&amp;&amp;setter.idAnnotationPresent<span class="params">(MyResource.class)</span>)</span>&#123;</span><br><span class="line">							MyResource resource = setter.getAnnotation<span class="params">(MyResource.class)</span>;</span><br><span class="line">							Object injectBean= null;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								injectBean = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;</span><br><span class="line">							&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">								injectBean = sigletons.get<span class="params">(properdesc.getName<span class="params">()</span>)</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(injectBean==null)</span>&#123;</span><br><span class="line">									<span class="keyword">for</span><span class="params">(String key: sigletons.keySet<span class="params">()</span>)</span>&#123;</span><br><span class="line">										<span class="keyword">if</span><span class="params">(properdesc.getPropertyType<span class="params">()</span>.isAssignableForm<span class="params">(singletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">											injectBean = sigletons.get<span class="params">(key)</span>;</span><br><span class="line">											break;</span><br><span class="line">										&#125;</span><br><span class="line">									&#125;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">							setter.setAccessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">							setter.invoke<span class="params">(bean,injectBean)</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					Filed[] fields = bean.getClass<span class="params">()</span>.getDeclaredFields<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(Field field:fields)</span></span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">if</span><span class="params">(field.isAnnotationPresent<span class="params">(MyResource.class)</span>)</span>&#123;</span><br><span class="line">							MyResource resource = field.getAnnotation<span class="params">(MyResource.class)</span>;</span><br><span class="line">							Object value = null;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								value = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;</span><br><span class="line">							&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">								value = sigletons.get<span class="params">(field.getName<span class="params">()</span>)</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(value == null)</span>&#123;</span><br><span class="line">									<span class="keyword">for</span><span class="params">(String key:sigletons.keyset<span class="params">()</span>)</span>&#123;</span><br><span class="line">										<span class="keyword">if</span><span class="params">(field.getType<span class="params">()</span>.isAssignableForm<span class="params">(sigletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">											value = sigletons.get<span class="params">(key)</span>;</span><br><span class="line">											break;</span><br><span class="line">										&#125;</span><br><span class="line">									&#125;</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">							field.setAccessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">							field.set<span class="params">(bean,value)</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">					e.printStackTrace<span class="params">()</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void injectObject<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>&#123;</span><br><span class="line">			Object bean = sigletons.get<span class="params">(beanDefinition.getId<span class="params">()</span>)</span>;</span><br><span class="line">			<span class="keyword">if</span><span class="params">(bean!=null)</span>&#123;</span><br><span class="line">				try&#123;</span><br><span class="line">					PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescription<span class="params">()</span>;</span><br><span class="line">					<span class="keyword">for</span><span class="params">(PropertyDefinition propertyDefinition:beanDefinition.getPropertys<span class="params">()</span>)</span>&#123;</span><br><span class="line">						<span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>&#123;</span><br><span class="line">							<span class="keyword">if</span><span class="params">(propertyDefinition.getName<span class="params">()</span>.equals<span class="params">(properdesc.getName<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">								Method setter = properdesc.getWriteMethod<span class="params">()</span>;</span><br><span class="line">								<span class="keyword">if</span><span class="params">(setter != null)</span>&#123;</span><br><span class="line">									Object injectBean = null;</span><br><span class="line">									<span class="keyword">if</span><span class="params">(propertyDefinition.getRef<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(propertyDefinition.getRef<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span>&#123;</span><br><span class="line">										injectBean = sigletons.get<span class="params">(propertyDefinition.getRef<span class="params">()</span>)</span>;</span><br><span class="line">									&#125;</span><br><span class="line">									<span class="keyword">else</span>&#123;</span><br><span class="line">										injectBean = ConvertUtils.convert<span class="params">(propertyDefinition.getValue<span class="params">()</span>,properdesc.getPropertyType<span class="params">()</span>)</span>;</span><br><span class="line">									&#125;</span><br><span class="line">									setter.setAcessible<span class="params">(<span class="literal">true</span>)</span>;</span><br><span class="line">									setter.invoke<span class="params">(bean,injectBean)</span>;</span><br><span class="line">								&#125;</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">					e.printStackTrace<span class="params">()</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void instanceBeans<span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>&#123;</span><br><span class="line">			try&#123;</span><br><span class="line">				<span class="keyword">if</span><span class="params">(beanDefinition.getClassName<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(beanDefinition.getClassName<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span></span><br><span class="line">				sigletons.put<span class="params">(beanDefinition.getId<span class="params">()</span>,Class.forName<span class="params">(beanDefinition.getClassName<span class="params">()</span>)</span>.newInstance<span class="params">()</span>)</span>;</span><br><span class="line">			&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">				e.printStackTrace<span class="params">()</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	private void readXML<span class="params">(String filename)</span>&#123;</span><br><span class="line">		SAXReader saxReader = new SAXReader<span class="params">()</span>;</span><br><span class="line">		Document docement = null;</span><br><span class="line">		try&#123;</span><br><span class="line">			URL xmlpath = this.getClass<span class="params">()</span>.getClassLoader<span class="params">()</span>.getResource<span class="params">(filename)</span>;</span><br><span class="line">			docement = saxReader.read<span class="params">(xmlpath)</span>;</span><br><span class="line">			Map&lt;String, String&gt; nsMap = new HashMap&lt;String,String&gt;<span class="params">()</span>;</span><br><span class="line">			nsMap.put<span class="params">(<span class="string">"ns"</span>,<span class="string">"http://www.springframework.org/schema/beans"</span>)</span>;</span><br><span class="line">			XPath xsub = document.createXPath<span class="params">(<span class="string">"//ns:beans/ns:bean"</span>)</span>;</span><br><span class="line">			xsub.setNamespaceURIs<span class="params">(nsMap)</span>;</span><br><span class="line">			List&lt;Element&gt; beans = xsub.selectNodes<span class="params">(document)</span>;</span><br><span class="line">			<span class="keyword">for</span><span class="params">(Element element:beans)</span>&#123;</span><br><span class="line">				String id = element.attributeValue<span class="params">(<span class="string">"id"</span>)</span>;</span><br><span class="line">				String clazz = element.attributeValue<span class="params">(<span class="string">"class"</span>)</span>;</span><br><span class="line">				BeanDefinition beanDefine = new BeanDefinition<span class="params">(id,clazz)</span>;</span><br><span class="line">				XPath propertysub = element.createXPath<span class="params">(<span class="string">"ns:property"</span>)</span>;</span><br><span class="line">				propertysub.setNamespaceURIs<span class="params">(nsMap)</span>;</span><br><span class="line">				List&lt;Element&gt; propertys = propertysub.selectNodes<span class="params">(element)</span>;</span><br><span class="line">				<span class="keyword">for</span><span class="params">(Element property:propertys)</span>&#123;</span><br><span class="line">					String propertyName = property.attributeValue<span class="params">(<span class="string">"name"</span>)</span>;</span><br><span class="line">					String propertyRef = property.attributeValue<span class="params">(<span class="string">"ref"</span>)</span>;</span><br><span class="line">					String propertyVaule = property.attributeValue<span class="params">(<span class="string">"value"</span>)</span>;</span><br><span class="line">					PropertyDefinition propertyDefinition =  new PropertyDefinition<span class="params">(propertyName,propertyRef,propertyValue)</span>;</span><br><span class="line">					beanDefine.getPropertys<span class="params">()</span>.add<span class="params">(propertyDefinition)</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				beanDefines.add<span class="params">(beanDefine)</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;catch<span class="params">(Exception e)</span>&#123;</span><br><span class="line">			e.printStackTrace<span class="params">()</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public Object getBean<span class="params">(String beanName)</span>&#123;</span><br><span class="line">		return this.sigletons.get<span class="params">(beanName)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre></p>
-<h2 id=""></h2>  
+<p>public class ClassPathXMLApplicationContext{<br>    private List<beandefinition> BeanDefines = new ArrayList<beandefinition>();</beandefinition></beandefinition></p>
+<pre><code>private Map&lt;String,Object&gt; sigletons = new HashMap&lt;String,Object&gt;<span class="params">()</span>;
+
+public ClassPathXMLApplicationContext<span class="params">(String fileName)</span>{
+    this.readXML<span class="params">(fileName)</span>;
+    this.instanceBeans<span class="params">()</span>;
+    this.annotationInject<span class="params">()</span>;
+    this.injectObject<span class="params">()</span>;
+}
+private void annotationInject<span class="params">()</span>{
+    <span class="keyword">for</span><span class="params">(String beanName : sigletons.keySet<span class="params">()</span>)</span>{
+        Object bean = sigletons.get<span class="params">(beanName)</span>;
+        <span class="keyword">if</span><span class="params">(bean!=null)</span>
+        {
+            try{
+                PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescriptors<span class="params">()</span>;
+                <span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>{
+                    Method setter = properdesc.getWriteMethod<span class="params">()</span>;
+                    <span class="keyword">if</span><span class="params">(setter!=null&amp;&amp;setter.idAnnotationPresent<span class="params">(MyResource.class)</span>)</span>{
+                        MyResource resource = setter.getAnnotation<span class="params">(MyResource.class)</span>;
+                        Object injectBean= null;
+                        <span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>{
+                            injectBean = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;
+                        }<span class="keyword">else</span>{
+                            injectBean = sigletons.get<span class="params">(properdesc.getName<span class="params">()</span>)</span>;
+                            <span class="keyword">if</span><span class="params">(injectBean==null)</span>{
+                                <span class="keyword">for</span><span class="params">(String key: sigletons.keySet<span class="params">()</span>)</span>{
+                                    <span class="keyword">if</span><span class="params">(properdesc.getPropertyType<span class="params">()</span>.isAssignableForm<span class="params">(singletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>{
+                                        injectBean = sigletons.get<span class="params">(key)</span>;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        setter.setAccessible<span class="params">(<span class="literal">true</span>)</span>;
+                        setter.invoke<span class="params">(bean,injectBean)</span>;
+                    }
+                }
+                Filed[] fields = bean.getClass<span class="params">()</span>.getDeclaredFields<span class="params">()</span>;
+                <span class="keyword">for</span><span class="params">(Field field:fields)</span>
+                {
+                    <span class="keyword">if</span><span class="params">(field.isAnnotationPresent<span class="params">(MyResource.class)</span>)</span>{
+                        MyResource resource = field.getAnnotation<span class="params">(MyResource.class)</span>;
+                        Object value = null;
+                        <span class="keyword">if</span><span class="params">(resource.name<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(resource.name<span class="params">()</span>)</span>)</span>{
+                            value = sigletons.get<span class="params">(resource.name<span class="params">()</span>)</span>;
+                        }<span class="keyword">else</span>{
+                            value = sigletons.get<span class="params">(field.getName<span class="params">()</span>)</span>;
+                            <span class="keyword">if</span><span class="params">(value == null)</span>{
+                                <span class="keyword">for</span><span class="params">(String key:sigletons.keyset<span class="params">()</span>)</span>{
+                                    <span class="keyword">if</span><span class="params">(field.getType<span class="params">()</span>.isAssignableForm<span class="params">(sigletons.get<span class="params">(key)</span>.getClass<span class="params">()</span>)</span>)</span>{
+                                        value = sigletons.get<span class="params">(key)</span>;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        field.setAccessible<span class="params">(<span class="literal">true</span>)</span>;
+                        field.set<span class="params">(bean,value)</span>;
+                    }
+                }
+            }catch<span class="params">(Exception e)</span>{
+                e.printStackTrace<span class="params">()</span>;
+            }
+        }
+    }
+}
+private void injectObject<span class="params">()</span>{
+    <span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>{
+        Object bean = sigletons.get<span class="params">(beanDefinition.getId<span class="params">()</span>)</span>;
+        <span class="keyword">if</span><span class="params">(bean!=null)</span>{
+            try{
+                PropertyDescriptor[] ps = Introspector.getBeanInfo<span class="params">(bean.getClass<span class="params">()</span>)</span>.getPropertyDescription<span class="params">()</span>;
+                <span class="keyword">for</span><span class="params">(PropertyDefinition propertyDefinition:beanDefinition.getPropertys<span class="params">()</span>)</span>{
+                    <span class="keyword">for</span><span class="params">(PropertyDescriptor properdesc:ps)</span>{
+                        <span class="keyword">if</span><span class="params">(propertyDefinition.getName<span class="params">()</span>.equals<span class="params">(properdesc.getName<span class="params">()</span>)</span>)</span>{
+                            Method setter = properdesc.getWriteMethod<span class="params">()</span>;
+                            <span class="keyword">if</span><span class="params">(setter != null)</span>{
+                                Object injectBean = null;
+                                <span class="keyword">if</span><span class="params">(propertyDefinition.getRef<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(propertyDefinition.getRef<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span>{
+                                    injectBean = sigletons.get<span class="params">(propertyDefinition.getRef<span class="params">()</span>)</span>;
+                                }
+                                <span class="keyword">else</span>{
+                                    injectBean = ConvertUtils.convert<span class="params">(propertyDefinition.getValue<span class="params">()</span>,properdesc.getPropertyType<span class="params">()</span>)</span>;
+                                }
+                                setter.setAcessible<span class="params">(<span class="literal">true</span>)</span>;
+                                setter.invoke<span class="params">(bean,injectBean)</span>;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }catch<span class="params">(Exception e)</span>{
+                e.printStackTrace<span class="params">()</span>;
+            }
+        }
+    }
+}
+private void instanceBeans<span class="params">()</span>{
+    <span class="keyword">for</span><span class="params">(BeanDefinition beanDefinition:beanDefines)</span>{
+        try{
+            <span class="keyword">if</span><span class="params">(beanDefinition.getClassName<span class="params">()</span>!=null&amp;&amp;!<span class="string">""</span>.equals<span class="params">(beanDefinition.getClassName<span class="params">()</span>.trim<span class="params">()</span>)</span>)</span>
+            sigletons.put<span class="params">(beanDefinition.getId<span class="params">()</span>,Class.forName<span class="params">(beanDefinition.getClassName<span class="params">()</span>)</span>.newInstance<span class="params">()</span>)</span>;
+        }catch<span class="params">(Exception e)</span>{
+            e.printStackTrace<span class="params">()</span>;
+        }
+    }
+}
+private void readXML<span class="params">(String filename)</span>{
+    SAXReader saxReader = new SAXReader<span class="params">()</span>;
+    Document docement = null;
+    try{
+        URL xmlpath = this.getClass<span class="params">()</span>.getClassLoader<span class="params">()</span>.getResource<span class="params">(filename)</span>;
+        docement = saxReader.read<span class="params">(xmlpath)</span>;
+        Map&lt;String, String&gt; nsMap = new HashMap&lt;String,String&gt;<span class="params">()</span>;
+        nsMap.put<span class="params">(<span class="string">"ns"</span>,<span class="string">"http://www.springframework.org/schema/beans"</span>)</span>;
+        XPath xsub = document.createXPath<span class="params">(<span class="string">"//ns:beans/ns:bean"</span>)</span>;
+        xsub.setNamespaceURIs<span class="params">(nsMap)</span>;
+        List&lt;Element&gt; beans = xsub.selectNodes<span class="params">(document)</span>;
+        <span class="keyword">for</span><span class="params">(Element element:beans)</span>{
+            String id = element.attributeValue<span class="params">(<span class="string">"id"</span>)</span>;
+            String clazz = element.attributeValue<span class="params">(<span class="string">"class"</span>)</span>;
+            BeanDefinition beanDefine = new BeanDefinition<span class="params">(id,clazz)</span>;
+            XPath propertysub = element.createXPath<span class="params">(<span class="string">"ns:property"</span>)</span>;
+            propertysub.setNamespaceURIs<span class="params">(nsMap)</span>;
+            List&lt;Element&gt; propertys = propertysub.selectNodes<span class="params">(element)</span>;
+            <span class="keyword">for</span><span class="params">(Element property:propertys)</span>{
+                String propertyName = property.attributeValue<span class="params">(<span class="string">"name"</span>)</span>;
+                String propertyRef = property.attributeValue<span class="params">(<span class="string">"ref"</span>)</span>;
+                String propertyVaule = property.attributeValue<span class="params">(<span class="string">"value"</span>)</span>;
+                PropertyDefinition propertyDefinition =  new PropertyDefinition<span class="params">(propertyName,propertyRef,propertyValue)</span>;
+                beanDefine.getPropertys<span class="params">()</span>.add<span class="params">(propertyDefinition)</span>;
+            }
+            beanDefines.add<span class="params">(beanDefine)</span>;
+        }
+    }catch<span class="params">(Exception e)</span>{
+        e.printStackTrace<span class="params">()</span>;
+    }
+}
+public Object getBean<span class="params">(String beanName)</span>{
+    return this.sigletons.get<span class="params">(beanName)</span>;
+}
+</code></pre><p>}</p>
+<hr>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -119,7 +262,7 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/java基础/">java基础</a>
+  <a class="article-category-link" href="/categories/框架/">框架</a>
 </div>
 
 
@@ -164,7 +307,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#注解的背景及来源"><span class="toc-number">1.</span> <span class="toc-text">注解的背景及来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的类注解"><span class="toc-number">2.</span> <span class="toc-text">常用的类注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#@Resource注解原理"><span class="toc-number">3.</span> <span class="toc-text">@Resource注解原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#@Resource标注字段或者方法"><span class="toc-number">3.1.</span> <span class="toc-text">@Resource标注字段或者方法</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -178,7 +321,7 @@
 		
 			<li><a href="/categories/C-C/" title="C/C++">C/C++<sup>1</sup></a></li>
 		
-			<li><a href="/categories/java基础/" title="java基础">java基础<sup>2</sup></a></li>
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>1</sup></a></li>
 		
 			<li><a href="/categories/前端/" title="前端">前端<sup>2</sup></a></li>
 		
@@ -186,7 +329,7 @@
 		
 			<li><a href="/categories/杂记/" title="杂记">杂记<sup>1</sup></a></li>
 		
-			<li><a href="/categories/框架/" title="框架">框架<sup>3</sup></a></li>
+			<li><a href="/categories/框架/" title="框架">框架<sup>4</sup></a></li>
 		
 		</ul>
 </div>
