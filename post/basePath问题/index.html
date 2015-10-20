@@ -4,20 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SpringMVC学习篇（二） | 行者</title>
+    <title>basePath问题 | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="Spring Web MVC简介
-Spring Web MVC是一种基于请求-响应模型，使用MVC架构模式思想的轻量级Web框架，能够简化WEB开发。
-
-Spring Web MVC优势
-
-与Spring框架集成（AOP、IOC）
-约定大于配置的契约式编程
-简单的Web层单元测试
-灵活地URL到页面">
+    <meta name="description" content="引言
+在jsp中，采用相对路径的方法去请求一个资源有时会产生错误的结果，网页里的相对路径是相对“请求URL的地址”的路径，例如在一个WEB工程里有两个JSP文件：user/login.jsp和user/register.jsp，在login.jsp文件里，有一个forward链接：&amp;lt; a hr">
     
     
     
@@ -79,15 +72,15 @@ Spring Web MVC优势
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/SpringMVC学习篇（二）/" title="SpringMVC学习篇（二）" itemprop="url">SpringMVC学习篇（二）</a>
+      <a href="/post/basePath问题/" title="basePath问题" itemprop="url">basePath问题</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-19T06:38:09.000Z" itemprop="datePublished">2015-08-19</time>
-    更新日期:<time datetime="2015-09-25T07:11:11.469Z" itemprop="dateModified">2015-09-25</time>
+    <time datetime="2015-10-20T07:37:10.000Z" itemprop="datePublished">2015-10-20</time>
+    更新日期:<time datetime="2015-10-20T14:19:09.731Z" itemprop="dateModified">2015-10-20</time>
     
   </p>
 </header>
@@ -96,79 +89,53 @@ Spring Web MVC优势
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC简介"><span class="toc-number">1.</span> <span class="toc-text">Spring Web MVC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC优势"><span class="toc-number">2.</span> <span class="toc-text">Spring Web MVC优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC架构"><span class="toc-number">3.</span> <span class="toc-text">Spring Web MVC架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求-响应模型"><span class="toc-number">3.1.</span> <span class="toc-text">请求-响应模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC核心架构"><span class="toc-number">3.2.</span> <span class="toc-text">MVC核心架构</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接采用绝对路径"><span class="toc-number">2.1.</span> <span class="toc-text">直接采用绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用标签"><span class="toc-number">2.2.</span> <span class="toc-text">利用标签</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="Spring_Web_MVC简介">Spring Web MVC简介</h2><hr>
-<p>Spring Web MVC是一种基于请求-响应模型，使用MVC架构模式思想的轻量级Web框架，能够简化WEB开发。</p>
+		<h2 id="引言">引言</h2><hr>
+<p>在jsp中，采用相对路径的方法去请求一个资源有时会产生错误的结果，网页里的相对路径是相对“请求URL的地址”的路径，例如在一个WEB工程里有两个JSP文件：user/login.jsp和user/register.jsp，在login.jsp文件里，有一个forward链接：&lt; a href=”/user/register.jsp”&gt;注册用户&lt;/ a&gt;,我们在浏览器里输入 :</p>
+<blockquote>
+<p><a href="http://localhost:8080/user/login.jsp" target="_blank" rel="external">http://localhost:8080/user/login.jsp</a></p>
+
+</blockquote>
+<p>请求登录界面后，点击注册，会请求一个错误的URL：</p>
+<blockquote>
+<p><a href="http://localhosst:8080/user/user/register.jsp" target="_blank" rel="external">http://localhosst:8080/user/user/register.jsp</a></p>
+</blockquote>
+<p>产生这样的问题，是因为请求的URL地址和被请求的URL地址不同所造成的。<br>在开发中，我们可以采用绝对路径避免这个问题的产生。</p>
 <hr>
-<h2 id="Spring_Web_MVC优势">Spring Web MVC优势</h2><hr>
-<ol>
-<li>与Spring框架集成（AOP、IOC）</li>
-<li>约定大于配置的契约式编程</li>
-<li>简单的Web层单元测试</li>
-<li>灵活地URL到页面控制器的映射</li>
-<li>模型数据通过Map数据结构实现，容易与其他视图技术集成</li>
-<li>强大的JSP标签库</li>
-<li>灵活的本地化、主题解析</li>
-<li>简单的异常处理</li>
-</ol>
+<h2 id="内容">内容</h2><hr>
+<h3 id="直接采用绝对路径">直接采用绝对路径</h3><p>HTML代码：<br>&lt;%@page language=”java” contentType=”text/html;charset=UTF-8” pageEncoding=”UTF-8” %&gt;<br>&lt;%<br>    String path = request.getContextPath();<br>    String basePath = request.getScheme()+”://“+request.getServerName()+”:”+request.getServerPort()+path+”/“;     //默认端口80<br>%&gt;</p>
+<blockquote>
+<p>用法：&lt; a href=”&lt;%=basePath%&gt;manager/loginController.java”&gt;&lt;/ a&gt;</p>
+</blockquote>
+<p>缺点：每次使用都需要在资源路径前加上&lt;%=basePath%&gt;,这完全是可以避免的。</p>
+<h3 id="利用标签">利用<base>标签</h3><p>将&lt; base&gt;标签中的href属性设置为页面的基准链接，页面中其他的路径都是相对于这个&lt; base&gt;的路径。<br>HTML代码：<br>&lt;%@ langeage=”java” contentType=”text/html”,charset=UTF-8” pageEncoding=”UTF-8”%&gt;<br>&lt;%<br>    String path = request.getContextPath();<br>    String basePath = request.getScheme()+”://“+request.getServerName()+”:”+request.getServerPort()+path+”/“;     //默认端口80<br>%&gt;<br>&lt; html&gt;<br>    &lt; head&gt;<br>        &lt; base href=”&lt;%=basePath%&gt;” /&gt;<br>    &lt;/ head&gt;<br>&lt;/ html&gt;</p>
+<blockquote>
+<p>用法：&lt; a href=”manager/loginController.java”&gt;</p>
+</blockquote>
+<p>优点：使用链接只需要指明相对路径，写法简单。</p>
 <hr>
-<h2 id="Spring_Web_MVC架构">Spring Web MVC架构</h2><h3 id="请求-响应模型">请求-响应模型</h3><hr>
-<p>Spring Web MVC是一个基于请求驱动的Web框架，使用了前端控制器模式进行设计，根据请求映射规则分发给相应的页面控制器进行处理，请求-响应模型如下图所示。<br><img src="\img\SpringMVC请求响应模型.jpg" alt="SpringMVC请求响应模型"><br>具体执行步骤如下：</p>
-<ol>
-<li>首先用户发送请求—&gt;前端控制器，前端控制器根据请求信息（如URL）来决定选择哪一个页面控制器进行处理并把请求委托给它，即以前的控制器的控制逻辑部分；图中的1、2步骤；</li>
-<li>页面控制器接收到请求后，进行功能处理，首先需要收集和绑定请求参数到一个对象，这个对象在Spring Web MVC中叫命令对象，并进行验证，然后将命令对象委托给业务对象进行处理；处理完毕后返回一个ModelAndView（模型数据和逻辑视图名）；图中的3、4、5步骤；</li>
-<li>前端控制器收回控制权，然后根据返回的逻辑视图名，选择相应的视图进行渲染，并把模型数据传入以便视图渲染；图中的步骤6、7；</li>
-<li>前端控制器再次收回控制权，将响应返回给用户，图中的步骤8；至此整个结束。</li>
-</ol>
-<p>问题：</p>
-<ol>
-<li>请求如何给前端控制器？（web.xml）</li>
-<li>前端控制器如何根据请求信息选择页面控制器进行功能处理？（handlerMapping）</li>
-<li>如何支持多种页面控制器呢？（handlerAdapter）</li>
-<li>如何页面控制器如何使用业务对象？（springIoc依赖注入）</li>
-<li>页面控制器如何返回模型数据？（ModelAndView）</li>
-<li>前端控制器如何根据页面控制器返回的逻辑视图名选择具体的视图进行渲染？（ViewResolver）</li>
-<li>不同的视图技术如何使用相应的模型数据？（map）</li>
-</ol>
-<hr>
-<h3 id="MVC核心架构">MVC核心架构</h3><hr>
-<p>Spring Web MVC核心架构图，如下图所示。<br><img src="\img\SpringMVC架构.JPG" alt="SpringMVC架构图"><br>核心架构的具体流程步骤如下：</p>
-<ol>
-<li>首先用户发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；</li>
-<li>DispatcherServlet——&gt;HandlerMapping， HandlerMapping将会把请求映射为HandlerExecutionChain对象（包含一个Handler处理器（页面控制器）对象、多个HandlerInterceptor拦截器）对象，通过这种策略模式，很容易添加新的映射策略；</li>
-<li>DispatcherServlet——&gt;HandlerAdapter，HandlerAdapter将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</li>
-<li>HandlerAdapter——&gt;处理器功能处理方法的调用，HandlerAdapter将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView对象（包含模型数据、逻辑视图名）；</li>
-<li>ModelAndView的逻辑视图名——&gt; ViewResolver， ViewResolver将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；</li>
-<li>View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；</li>
-<li>返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。<br>在此，我们可以看出具体的核心开发步骤：</li>
-<li>DispatcherServlet在web.xml中的部署描述，从而拦截请求到Spring Web MVC。</li>
-<li>HandlerMapping的配置，从而将请求映射到处理器。</li>
-<li>HandlerAdapter的配置，从而支持多种类型的处理器。</li>
-<li>ViewResolver的配置，从而将逻辑视图名解析为具体视图技术。</li>
-<li>处理器（页面控制器）的配置，从而进行功能处理。</li>
-</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SpringMVC/">SpringMVC</a>
+  <span></span> <a href="/tags/url路径/">url路径</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/框架/">框架</a>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/SpringMVC学习篇（二）/" data-title="SpringMVC学习篇（二） | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/basePath问题/" data-title="basePath问题 | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -178,18 +145,18 @@ Spring Web MVC优势
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/后端管理理解篇（一）/" title="后端管理理解篇（一）">
+ <a href="/post/正则表达式/" title="正则表达式">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  后端管理理解篇（一）</span>
+  正则表达式</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/post/SpringMVC学习篇（一）/"  title="SpringMVC学习篇（一）">
+<a href="/post/数据库索引/"  title="数据库索引">
  <strong>NEXT:</strong><br/> 
- <span>SpringMVC学习篇（一）
+ <span>数据库索引
 </span>
 </a>
 </div>
@@ -206,7 +173,7 @@ Spring Web MVC优势
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC简介"><span class="toc-number">1.</span> <span class="toc-text">Spring Web MVC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC优势"><span class="toc-number">2.</span> <span class="toc-text">Spring Web MVC优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC架构"><span class="toc-number">3.</span> <span class="toc-text">Spring Web MVC架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求-响应模型"><span class="toc-number">3.1.</span> <span class="toc-text">请求-响应模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC核心架构"><span class="toc-number">3.2.</span> <span class="toc-text">MVC核心架构</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接采用绝对路径"><span class="toc-number">2.1.</span> <span class="toc-text">直接采用绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用标签"><span class="toc-number">2.2.</span> <span class="toc-text">利用标签</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">

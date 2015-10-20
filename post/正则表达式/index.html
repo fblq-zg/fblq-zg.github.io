@@ -4,20 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SpringMVC学习篇（二） | 行者</title>
+    <title>正则表达式 | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
     
-    <meta name="description" content="Spring Web MVC简介
-Spring Web MVC是一种基于请求-响应模型，使用MVC架构模式思想的轻量级Web框架，能够简化WEB开发。
+    <meta name="description" content="概念
+在编写处理字符串的程序或网页时，经常会遇到查找符合某些复杂规则的字符串的情况；而正则表达式就是描述这些规则的工具，换句话说，正则表达式就是记录文本规则的代码。正则表达式和通配符（*、？）类似，也是用来进行文本匹配的工具，和通配符相比，正则表达式更能精确地描述匹配的需求，但是更加复杂。
 
-Spring Web MVC优势
-
-与Spring框架集成（AOP、IOC）
-约定大于配置的契约式编程
-简单的Web层单元测试
-灵活地URL到页面">
+元字符">
     
     
     
@@ -79,15 +74,15 @@ Spring Web MVC优势
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/SpringMVC学习篇（二）/" title="SpringMVC学习篇（二）" itemprop="url">SpringMVC学习篇（二）</a>
+      <a href="/post/正则表达式/" title="正则表达式" itemprop="url">正则表达式</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-08-19T06:38:09.000Z" itemprop="datePublished">2015-08-19</time>
-    更新日期:<time datetime="2015-09-25T07:11:11.469Z" itemprop="dateModified">2015-09-25</time>
+    <time datetime="2015-10-20T12:20:01.000Z" itemprop="datePublished">2015-10-20</time>
+    更新日期:<time datetime="2015-10-20T14:01:44.855Z" itemprop="dateModified">2015-10-20</time>
     
   </p>
 </header>
@@ -96,79 +91,83 @@ Spring Web MVC优势
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC简介"><span class="toc-number">1.</span> <span class="toc-text">Spring Web MVC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC优势"><span class="toc-number">2.</span> <span class="toc-text">Spring Web MVC优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC架构"><span class="toc-number">3.</span> <span class="toc-text">Spring Web MVC架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求-响应模型"><span class="toc-number">3.1.</span> <span class="toc-text">请求-响应模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC核心架构"><span class="toc-number">3.2.</span> <span class="toc-text">MVC核心架构</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元字符"><span class="toc-number">2.</span> <span class="toc-text">元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符转义"><span class="toc-number">3.</span> <span class="toc-text">字符转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重复"><span class="toc-number">4.</span> <span class="toc-text">重复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符类"><span class="toc-number">5.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分枝条件"><span class="toc-number">6.</span> <span class="toc-text">分枝条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反义"><span class="toc-number">7.</span> <span class="toc-text">反义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组"><span class="toc-number">8.</span> <span class="toc-text">分组</span></a></li></ol>
 		</div>
 		
-		<h2 id="Spring_Web_MVC简介">Spring Web MVC简介</h2><hr>
-<p>Spring Web MVC是一种基于请求-响应模型，使用MVC架构模式思想的轻量级Web框架，能够简化WEB开发。</p>
+		<h2 id="概念">概念</h2><hr>
+<p>在编写处理字符串的程序或网页时，经常会遇到查找符合某些复杂规则的字符串的情况；而正则表达式就是描述这些规则的工具，换句话说，正则表达式就是记录文本规则的代码。<br>正则表达式和通配符（*、？）类似，也是用来进行文本匹配的工具，和通配符相比，正则表达式更能精确地描述匹配的需求，但是更加复杂。</p>
 <hr>
-<h2 id="Spring_Web_MVC优势">Spring Web MVC优势</h2><hr>
+<h2 id="元字符">元字符</h2><hr>
+<p>常用元字符：</p>
+<blockquote>
+<p><strong>.</strong> ：匹配除换行符以外的任意字符<br>\w ：匹配字母或数字或下划线或汉字<br>\s　：匹配任意的空白符<br>\d　：匹配数字<br>\b　：匹配单词的开始或结束<br>^　：匹配字符串的开始<br>$　：匹配字符串的结束</p>
+</blockquote>
+<p>示例代码：</p>
 <ol>
-<li>与Spring框架集成（AOP、IOC）</li>
-<li>约定大于配置的契约式编程</li>
-<li>简单的Web层单元测试</li>
-<li>灵活地URL到页面控制器的映射</li>
-<li>模型数据通过Map数据结构实现，容易与其他视图技术集成</li>
-<li>强大的JSP标签库</li>
-<li>灵活的本地化、主题解析</li>
-<li>简单的异常处理</li>
-</ol>
-<hr>
-<h2 id="Spring_Web_MVC架构">Spring Web MVC架构</h2><h3 id="请求-响应模型">请求-响应模型</h3><hr>
-<p>Spring Web MVC是一个基于请求驱动的Web框架，使用了前端控制器模式进行设计，根据请求映射规则分发给相应的页面控制器进行处理，请求-响应模型如下图所示。<br><img src="\img\SpringMVC请求响应模型.jpg" alt="SpringMVC请求响应模型"><br>具体执行步骤如下：</p>
-<ol>
-<li>首先用户发送请求—&gt;前端控制器，前端控制器根据请求信息（如URL）来决定选择哪一个页面控制器进行处理并把请求委托给它，即以前的控制器的控制逻辑部分；图中的1、2步骤；</li>
-<li>页面控制器接收到请求后，进行功能处理，首先需要收集和绑定请求参数到一个对象，这个对象在Spring Web MVC中叫命令对象，并进行验证，然后将命令对象委托给业务对象进行处理；处理完毕后返回一个ModelAndView（模型数据和逻辑视图名）；图中的3、4、5步骤；</li>
-<li>前端控制器收回控制权，然后根据返回的逻辑视图名，选择相应的视图进行渲染，并把模型数据传入以便视图渲染；图中的步骤6、7；</li>
-<li>前端控制器再次收回控制权，将响应返回给用户，图中的步骤8；至此整个结束。</li>
-</ol>
-<p>问题：</p>
-<ol>
-<li>请求如何给前端控制器？（web.xml）</li>
-<li>前端控制器如何根据请求信息选择页面控制器进行功能处理？（handlerMapping）</li>
-<li>如何支持多种页面控制器呢？（handlerAdapter）</li>
-<li>如何页面控制器如何使用业务对象？（springIoc依赖注入）</li>
-<li>页面控制器如何返回模型数据？（ModelAndView）</li>
-<li>前端控制器如何根据页面控制器返回的逻辑视图名选择具体的视图进行渲染？（ViewResolver）</li>
-<li>不同的视图技术如何使用相应的模型数据？（map）</li>
+<li>\bword\b                //精准查找word这个单词</li>
+<li>\bhi\b.*\bLucy\b     //hi后面不远处跟着Lucy(除换行符)</li>
+<li>^\d{5,12}$              //匹配一个5位到12位的数字</li>
+<li>((2[0-4]\d|25[0-5]|[01]?\d\d?).){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)    //匹配一个IP地址</li>
 </ol>
 <hr>
-<h3 id="MVC核心架构">MVC核心架构</h3><hr>
-<p>Spring Web MVC核心架构图，如下图所示。<br><img src="\img\SpringMVC架构.JPG" alt="SpringMVC架构图"><br>核心架构的具体流程步骤如下：</p>
+<h2 id="字符转义">字符转义</h2><hr>
+<p>元字符本身代表一种匹配规则，如果需要查找元字符本身，需要使用转义符<strong> \ </strong>取消元字符的特殊意义。<br>例子：<strong> \. </strong>或<strong> \* </strong>或<strong> \\ </strong>或<strong> C:\\Windows </strong>或<strong> zn\.com </strong></p>
+<hr>
+<h2 id="重复">重复</h2><hr>
+<p>常用限定符：</p>
+<blockquote>
+<p>*：重复零次或多次<br>+　：重复一次或跟多次<br>? ：重复零次或一次<br>{n} ：重复n次<br>{n,} : 重复n次或更多次<br>{n,m} : 重复n到m次</p>
+</blockquote>
+<p>例子：</p>
 <ol>
-<li>首先用户发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；</li>
-<li>DispatcherServlet——&gt;HandlerMapping， HandlerMapping将会把请求映射为HandlerExecutionChain对象（包含一个Handler处理器（页面控制器）对象、多个HandlerInterceptor拦截器）对象，通过这种策略模式，很容易添加新的映射策略；</li>
-<li>DispatcherServlet——&gt;HandlerAdapter，HandlerAdapter将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</li>
-<li>HandlerAdapter——&gt;处理器功能处理方法的调用，HandlerAdapter将会根据适配的结果调用真正的处理器的功能处理方法，完成功能处理；并返回一个ModelAndView对象（包含模型数据、逻辑视图名）；</li>
-<li>ModelAndView的逻辑视图名——&gt; ViewResolver， ViewResolver将把逻辑视图名解析为具体的View，通过这种策略模式，很容易更换其他视图技术；</li>
-<li>View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构，因此很容易支持其他视图技术；</li>
-<li>返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。<br>在此，我们可以看出具体的核心开发步骤：</li>
-<li>DispatcherServlet在web.xml中的部署描述，从而拦截请求到Spring Web MVC。</li>
-<li>HandlerMapping的配置，从而将请求映射到处理器。</li>
-<li>HandlerAdapter的配置，从而支持多种类型的处理器。</li>
-<li>ViewResolver的配置，从而将逻辑视图名解析为具体视图技术。</li>
-<li>处理器（页面控制器）的配置，从而进行功能处理。</li>
+<li>version\d+　　//匹配version后带一个或多个数字</li>
+<li>^\w+          //匹配文本中的第一个单词</li>
 </ol>
+<hr>
+<h2 id="字符类">字符类</h2><hr>
+<p>例子：</p>
+<ol>
+<li>[aeiou]    //匹配任何一个英文元音字母</li>
+<li>[a-z0-9A-Z]    //只考虑英文，等同于\w</li>
+<li>\(?0\d{2}[) -]?\d{8}    //匹配多种格式的电话号码  如：(010)88886666、022-22334455、01166778899等。</li>
+</ol>
+<hr>
+<h2 id="分枝条件">分枝条件</h2><hr>
+<p>正则表达式的分枝指的是有多种规则，如果满足其中的一种都应该匹配成功，代码中用|实现。<br>例子：</p>
+<ol>
+<li>0\d{2}-\d{8}|0\d{3}-\d{7}    //匹配两种以连字号分隔的电话号码</li>
+</ol>
+<hr>
+<h2 id="反义">反义</h2><hr>
+<p>常用反义代码：</p>
+<blockquote>
+<p>\W :匹配任意不是字母、数字、下划线、汉字的字符<br>\S :匹配任意不是空白符的字符<br>\D :匹配任意非数字的字符<br>\B :匹配不是单词开头或结束的位置<br>[^x] :匹配除了x以外的任意字符<br>[^aeiou] :匹配除了aeiou之外的任意字符</p>
+</blockquote>
+<p>例子：\S+ 、&lt; a[^&gt;]+&gt;</p>
+<hr>
+<h2 id="分组">分组</h2><hr>
+<p>*、+或?可以重复一个字符零次或多次，如果重复多个字符则用小括号指定子表达式，称之为分组。</p>
+<hr>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SpringMVC/">SpringMVC</a>
+  <span></span> <a href="/tags/字符串匹配/">字符串匹配</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/框架/">框架</a>
+  <a class="article-category-link" href="/categories/C-C/">C/C++</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/SpringMVC学习篇（二）/" data-title="SpringMVC学习篇（二） | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/正则表达式/" data-title="正则表达式 | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -177,19 +176,11 @@ Spring Web MVC优势
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/后端管理理解篇（一）/" title="后端管理理解篇（一）">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  后端管理理解篇（一）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/SpringMVC学习篇（一）/"  title="SpringMVC学习篇（一）">
+<a href="/post/basePath问题/"  title="basePath问题">
  <strong>NEXT:</strong><br/> 
- <span>SpringMVC学习篇（一）
+ <span>basePath问题
 </span>
 </a>
 </div>
@@ -206,7 +197,7 @@ Spring Web MVC优势
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC简介"><span class="toc-number">1.</span> <span class="toc-text">Spring Web MVC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC优势"><span class="toc-number">2.</span> <span class="toc-text">Spring Web MVC优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring_Web_MVC架构"><span class="toc-number">3.</span> <span class="toc-text">Spring Web MVC架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求-响应模型"><span class="toc-number">3.1.</span> <span class="toc-text">请求-响应模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVC核心架构"><span class="toc-number">3.2.</span> <span class="toc-text">MVC核心架构</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元字符"><span class="toc-number">2.</span> <span class="toc-text">元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符转义"><span class="toc-number">3.</span> <span class="toc-text">字符转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重复"><span class="toc-number">4.</span> <span class="toc-text">重复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符类"><span class="toc-number">5.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分枝条件"><span class="toc-number">6.</span> <span class="toc-text">分枝条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#反义"><span class="toc-number">7.</span> <span class="toc-text">反义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组"><span class="toc-number">8.</span> <span class="toc-text">分组</span></a></li></ol>
   </div>
 
 <div id="asidepart">
