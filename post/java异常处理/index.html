@@ -14,7 +14,8 @@
 用户的输入错误除了不可避免的键盘输入错误，有些用户不清楚格式要求甚至不遵守格式要求。例如用户请求一个格式错误的URL，程序如果不检查，网络层就会报警。
 设备错误硬件有发生故障的可能。例如网页可能临时性不能浏览；打印机在打印过程中没纸了。
 物理限制磁盘已满，没有可用的存储空间。
-程序错误程">
+程序错误
+">
     
     
     
@@ -84,7 +85,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-09-25T07:42:42.000Z" itemprop="datePublished">2015-09-25</time>
-    更新日期:<time datetime="2015-09-29T03:45:52.951Z" itemprop="dateModified">2015-09-29</time>
+    更新日期:<time datetime="2015-10-22T06:29:30.905Z" itemprop="dateModified">2015-10-22</time>
     
   </p>
 </header>
@@ -101,8 +102,9 @@
 <li>用户的输入错误<br>除了不可避免的键盘输入错误，有些用户不清楚格式要求甚至不遵守格式要求。例如用户请求一个格式错误的URL，程序如果不检查，网络层就会报警。</li>
 <li>设备错误<br>硬件有发生故障的可能。例如网页可能临时性不能浏览；打印机在打印过程中没纸了。</li>
 <li>物理限制<br>磁盘已满，没有可用的存储空间。</li>
-<li>程序错误<br>程序有可能无法正确执行。例如返回一个错误的答案；调用了错误的方法。</li>
+<li>程序错误</li>
 </ol>
+<p>程序有可能无法正确执行。例如返回一个错误的答案；调用了错误的方法。</p>
 <hr>
 <h2 id="错误处理">错误处理</h2><hr>
 <ol>
@@ -128,7 +130,7 @@
 <h2 id="五个关键字">五个关键字</h2><hr>
 <p>java异常处理主要由5个关键字控制，分别为：try、catch、throw、throws和finally。</p>
 <blockquote>
-<p>try: 一个代码防护块，检测方法体中是否会发生异常。<br>catch: 捕获try代码块中发生的异常，并进行处理，使程序不受影响而继续执行下去。<br>throw: 在程序中明确引发异常。<br>throws: 方法引发异常，一个或者多个，但方法自身不处理异常，而是将异常抛给调用者。<br>finally: 不管异常是否发生，都会被执行的代码。</p>
+<p>try: 一个代码防护块，检测方法体中是否会发生异常。<br>catch: 捕获try代码块中发生的异常，并进行处理，使程序不受影响而继续执行下去。<br>throw: 在程序中明确引发异常，它不会处理，而是由方法块的throws Exception调用异常处理类进行处理。<br>throws: 方法引发异常，一个或者多个，但方法自身不处理异常，而是将异常抛给调用者。<br>finally: 不管异常是否发生，都会被执行的代码。</p>
 </blockquote>
 <h3 id="一个例子">一个例子</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Integer myMethod(String str) throws <span class="keyword">Exception</span>&#123;</span><br><span class="line">		Integer a;</span><br><span class="line">		<span class="keyword">if</span>(str == <span class="keyword">null</span>)&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">"字符串不能为空！"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">	a = Integer.parseInt(str);</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> e)&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">"输入的字符串必须能够转换为数字！"</span>,e);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span>&#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">"一定执行的语句！"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
@@ -208,7 +210,7 @@
 		
 			<li><a href="/categories/C-C/" title="C/C++">C/C++<sup>2</sup></a></li>
 		
-			<li><a href="/categories/java基础/" title="java基础">java基础<sup>2</sup></a></li>
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>3</sup></a></li>
 		
 			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
 		

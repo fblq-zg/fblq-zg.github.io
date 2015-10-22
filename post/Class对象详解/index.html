@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>数据库索引 | 行者</title>
+    <title>Class对象详解 | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
+    
+    <meta name="description" content="引言
+在java中，Class对象和实例对象的生成都有很多种方式，二者存在一定的关联，弄清楚二者的生成方式有助于深入理解Java对象的特性。java中的每个类都有一个相应的Class对象，每当我们编写一个类，编译完成后，在.class文件中就会产生一个Class对象，用于表示这个类的类型信息。在程序">
     
     
     
@@ -69,15 +72,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/数据库索引/" title="数据库索引" itemprop="url">数据库索引</a>
+      <a href="/post/Class对象详解/" title="Class对象详解" itemprop="url">Class对象详解</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-09-29T11:25:51.000Z" itemprop="datePublished">2015-09-29</time>
-    更新日期:<time datetime="2015-09-29T11:30:09.153Z" itemprop="dateModified">2015-09-29</time>
+    <time datetime="2015-10-22T06:20:35.000Z" itemprop="datePublished">2015-10-22</time>
+    更新日期:<time datetime="2015-10-22T13:27:56.732Z" itemprop="dateModified">2015-10-22</time>
     
   </p>
 </header>
@@ -86,29 +89,43 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class对象的生成方式"><span class="toc-number">2.1.</span> <span class="toc-text">Class对象的生成方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">2.2.</span> <span class="toc-text">例子</span></a></li></ol></li></ol>
 		</div>
 		
-		  
+		<h2 id="引言">引言</h2><hr>
+<p>在java中，Class对象和实例对象的生成都有很多种方式，二者存在一定的关联，弄清楚二者的生成方式有助于深入理解Java对象的特性。<br>java中的每个类都有一个相应的Class对象，每当我们编写一个类，编译完成后，在.class文件中就会产生一个Class对象，用于表示这个类的类型信息。在程序运行时，每次创建类实例都需要Class对象的信息。换句话说，先加载Class对象至内存，然后才能创建实例对象。</p>
+<hr>
+<h2 id="内容">内容</h2><hr>
+<h3 id="Class对象的生成方式">Class对象的生成方式</h3><blockquote>
+<p>Class.forName(“类名字符串”)    //需用全称，包名+类名<br>类名.class<br>实例对象.getClass()</p>
+</blockquote>
+<h3 id="例子">例子</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> TestClass&#123;</span><br><span class="line">	<span class="keyword">public</span> TestClass()&#123;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"构造函数"</span>);</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">static</span>&#123;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"静态的参数初始化"</span>);</span><br><span class="line">&#125;</span><br><span class="line">	&#123;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"非静态的参数初始化"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyClass&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args)&#123;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="comment">//测试Class.forName()</span></span><br><span class="line">	<span class="keyword">Class</span> testForName = ***<span class="keyword">Class</span>.forName(TestClass)***;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"testForName:"</span>+testForName);</span><br><span class="line">	<span class="comment">//测试类名.class</span></span><br><span class="line">	<span class="keyword">Class</span> testClass = ***TestClass.<span class="keyword">class</span>***;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"testClass:"</span>+testClass);</span><br><span class="line">	<span class="comment">//测试实例对象.getClass()</span></span><br><span class="line">	TestClass testClass = <span class="keyword">new</span> TestClass();</span><br><span class="line">	<span class="keyword">Class</span> testGetClass = ***testClass.getClass()***;</span><br><span class="line">	System.out.<span class="keyword">println</span>(<span class="string">"testGetClass:"</span>+testGetClass);</span><br><span class="line">&#125;<span class="keyword">catch</span>(ClassNotFoundException e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试结果：<br>静态的参数初始化<br>testForName:class TestClass<br>testClass:class TestClass<br>非静态的参数初始化<br>构造函数<br>testGetClass:class TestClass</p>
+<blockquote>
+<p>静态成员在类加载时初始化，非静态成员在new类实例的时候加载。</p>
+</blockquote>
+<p>分析：<br>三种Class对象的生成方式结果一样，但只对静态的参数初始化一次，说明只产生了一个Class对象。<br>实际上，在编译时，JVM会把每一个java类编译成Class对象，存放在同类名的.class文件中。在运行时，每次需要生成类的对象时，JVM会检查此类的Class对象是否加载在内存中，若没有加载，则把同类名.class文件加载进内存，若加载，则根据.class文件生成实例对象。</p>
+<hr>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/索引/">索引</a>
+  <span></span> <a href="/tags/Class对象/">Class对象</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/数据库/">数据库</a>
+  <a class="article-category-link" href="/categories/java基础/">java基础</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/数据库索引/" data-title="数据库索引 | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/Class对象详解/" data-title="Class对象详解 | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -117,19 +134,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/post/basePath问题/" title="basePath问题">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  basePath问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/post/instanceof、isAssignableFrom和isInstance/"  title="instanceof、isAssignableFrom和isInstance">
+<a href="/post/正则表达式/"  title="正则表达式">
  <strong>NEXT:</strong><br/> 
- <span>instanceof、isAssignableFrom和isInstance
+ <span>正则表达式
 </span>
 </a>
 </div>
@@ -146,7 +155,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class对象的生成方式"><span class="toc-number">2.1.</span> <span class="toc-text">Class对象的生成方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-number">2.2.</span> <span class="toc-text">例子</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
