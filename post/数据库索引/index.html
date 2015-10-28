@@ -9,6 +9,12 @@
     
     <meta name="author" content="zhong.zhou">
     
+    <meta name="description" content="引言
+
+分类
+覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。复合索引：多列组合成一个索引，可以代替多个单一索引，遵循最左前缀原则。普通索引：最基本的索引，没有任何限制条件。唯一索引：索引列必须唯一，允许为空。主键索引：索引列不允许为空的唯一索引。
+全文索引：适用">
+    
     
     
     
@@ -77,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-09-29T11:25:51.000Z" itemprop="datePublished">2015-09-29</time>
-    更新日期:<time datetime="2015-09-29T11:30:09.153Z" itemprop="dateModified">2015-09-29</time>
+    更新日期:<time datetime="2015-10-26T09:44:49.022Z" itemprop="dateModified">2015-10-26</time>
     
   </p>
 </header>
@@ -86,10 +92,17 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全文索引：适用于匹配长字符串的索引，耗费空间。"><span class="toc-number">3.</span> <span class="toc-text">全文索引：适用于匹配长字符串的索引，耗费空间。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">4.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">4.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位图"><span class="toc-number">4.2.</span> <span class="toc-text">位图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">4.3.</span> <span class="toc-text">HASH</span></a></li></ol></li></ol>
 		</div>
 		
-		  
+		<h2 id="引言">引言</h2><hr>
+<hr>
+<h2 id="分类">分类</h2><hr>
+<p>覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。<br>复合索引：多列组合成一个索引，可以代替多个单一索引，遵循最左前缀原则。<br>普通索引：最基本的索引，没有任何限制条件。<br>唯一索引：索引列必须唯一，允许为空。<br>主键索引：索引列不允许为空的唯一索引。</p>
+<h2 id="全文索引：适用于匹配长字符串的索引，耗费空间。">全文索引：适用于匹配长字符串的索引，耗费空间。</h2><h2 id="实现方式">实现方式</h2><hr>
+<h3 id="BTREE">BTREE</h3><h3 id="位图">位图</h3><h3 id="HASH">HASH</h3><p>hash前后大小关系发生变化，不支持范围查找，只能等值过滤，不能避免数据排序。<br>hash后可能产生相同的值，需要进行回表操作，查询效率取决于hash的质量。<br>复合索引采用hash，合并组合键进行hash求值，不能利用部分索引键进行查询。</p>
+<hr>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -146,7 +159,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全文索引：适用于匹配长字符串的索引，耗费空间。"><span class="toc-number">3.</span> <span class="toc-text">全文索引：适用于匹配长字符串的索引，耗费空间。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">4.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">4.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位图"><span class="toc-number">4.2.</span> <span class="toc-text">位图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">4.3.</span> <span class="toc-text">HASH</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
@@ -160,9 +173,9 @@
 		
 			<li><a href="/categories/C-C/" title="C/C++">C/C++<sup>2</sup></a></li>
 		
-			<li><a href="/categories/java基础/" title="java基础">java基础<sup>3</sup></a></li>
+			<li><a href="/categories/java基础/" title="java基础">java基础<sup>4</sup></a></li>
 		
-			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
+			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
 		
 			<li><a href="/categories/后端/" title="后端">后端<sup>1</sup></a></li>
 		

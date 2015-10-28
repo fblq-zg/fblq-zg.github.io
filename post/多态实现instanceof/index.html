@@ -4,18 +4,10 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SpringMVC之注解篇（二） | 行者</title>
+    <title>多态实现instanceof | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
-    
-    <meta name="description" content="引言
-经过上一篇文章的学习，了解注解在Spring容器中可以注册和装配组件，该篇将介绍request数据到handler method参数数据的绑定所用到的注解。
-
-内容
-handler method参数绑定常用的注解，根据他们处理的Request的不同内容部分分为四类：
-
-处理request ur">
     
     
     
@@ -77,15 +69,15 @@ handler method参数绑定常用的注解，根据他们处理的Request的不�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/SpringMVC之注解篇（二）/" title="SpringMVC之注解篇（二）" itemprop="url">SpringMVC之注解篇（二）</a>
+      <a href="/post/多态实现instanceof/" title="多态实现instanceof" itemprop="url">多态实现instanceof</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-09-25T12:35:32.000Z" itemprop="datePublished">2015-09-25</time>
-    更新日期:<time datetime="2015-09-27T12:23:57.106Z" itemprop="dateModified">2015-09-27</time>
+    <time datetime="2015-10-24T12:07:10.000Z" itemprop="datePublished">2015-10-24</time>
+    更新日期:<time datetime="2015-10-24T12:08:10.864Z" itemprop="dateModified">2015-10-24</time>
     
   </p>
 </header>
@@ -94,41 +86,29 @@ handler method参数绑定常用的注解，根据他们处理的Request的不�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a></li></ol>
+		
 		</div>
 		
-		<h2 id="引言">引言</h2><hr>
-<p>经过上一篇文章的学习，了解注解在Spring容器中可以注册和装配组件，该篇将介绍request数据到handler method参数数据的绑定所用到的注解。</p>
-<hr>
-<h2 id="内容">内容</h2><hr>
-<p>handler method参数绑定常用的注解，根据他们处理的Request的不同内容部分分为四类：</p>
-<ol>
-<li>处理request url部分的注解：@RequestVariable</li>
-<li>处理request header部分的注解：@RequestHeader、@CookieValue</li>
-<li>处理request body部分的注解：@RequestBody、@RequestParam</li>
-<li>处理arrtibute类型的注解：@SessionAttribute、@ModelAttribute</li>
-</ol>
-<hr>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SpringMVC注解/">SpringMVC注解</a>
+  <span></span> <a href="/tags/多态/">多态</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/框架/">框架</a>
+  <a class="article-category-link" href="/categories/java基础/">java基础</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/SpringMVC之注解篇（二）/" data-title="SpringMVC之注解篇（二） | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/多态实现instanceof/" data-title="多态实现instanceof | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -138,18 +118,18 @@ handler method参数绑定常用的注解，根据他们处理的Request的不�
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/instanceof、isAssignableFrom和isInstance/" title="instanceof、isAssignableFrom和isInstance">
+ <a href="/post/HTTP协议详解/" title="HTTP协议详解">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  instanceof、isAssignableFrom和isInstance</span>
+  HTTP协议详解</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/post/java异常处理/"  title="java异常处理">
+<a href="/post/Class对象详解/"  title="Class对象详解">
  <strong>NEXT:</strong><br/> 
- <span>java异常处理
+ <span>Class对象详解
 </span>
 </a>
 </div>
@@ -166,7 +146,7 @@ handler method参数绑定常用的注解，根据他们处理的Request的不�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容"><span class="toc-number">2.</span> <span class="toc-text">内容</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
