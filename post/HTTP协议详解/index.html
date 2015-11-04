@@ -10,15 +10,12 @@
     <meta name="author" content="zhong.zhou">
     
     <meta name="description" content="什么是HTTP协议
-协议
+协议是指设备间进行通信需要遵守的规则，超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器。
 
 URL详解
+URL(Uniform Resource Locator)地址用于描述网络中的一个资源，基本格式如下：
 
-HTTP协议特点
-
-HTTP消息结构
-
-HTTP方法">
+sc">
     
     
     
@@ -88,7 +85,7 @@ HTTP方法">
     </p>
   <p class="article-time">
     <time datetime="2015-10-26T07:33:34.000Z" itemprop="datePublished">2015-10-26</time>
-    更新日期:<time datetime="2015-10-28T01:55:02.363Z" itemprop="dateModified">2015-10-28</time>
+    更新日期:<time datetime="2015-11-01T04:49:41.524Z" itemprop="dateModified">2015-11-01</time>
     
   </p>
 </header>
@@ -97,19 +94,34 @@ HTTP方法">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL详解"><span class="toc-number">2.</span> <span class="toc-text">URL详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">3.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP消息结构"><span class="toc-number">4.</span> <span class="toc-text">HTTP消息结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP方法"><span class="toc-number">5.</span> <span class="toc-text">HTTP方法</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL详解"><span class="toc-number">2.</span> <span class="toc-text">URL详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">3.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET与POST"><span class="toc-number">4.</span> <span class="toc-text">GET与POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码"><span class="toc-number">5.</span> <span class="toc-text">状态码</span></a></li></ol>
 		</div>
 		
 		<h2 id="什么是HTTP协议">什么是HTTP协议</h2><hr>
-<p>协议</p>
+<p>协议是指设备间进行通信需要遵守的规则，超文本传输协议(HTTP)是一种通信协议，它允许将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器。</p>
 <hr>
 <h2 id="URL详解">URL详解</h2><hr>
+<p>URL(Uniform Resource Locator)地址用于描述网络中的一个资源，基本格式如下：</p>
+<blockquote>
+<p>scheme://host[:port#]/path/……/[;url-params][?query-string][#anchor]</p>
+</blockquote>
+<p>1.scheme:指定底层使用的协议，如：http、https、ftp等。<br>2.host:HTTP服务器的IP地址或者域名。<br>3.port#:HTTP服务器的默认端口是80，可以省略，其他端口必须指明，例如：<a href="http://www.cnblogs.com:8080/" target="_blank" rel="external">http://www.cnblogs.com:8080/</a> 。<br>4.path:访问服务器的资源路径。<br>5.url-params:待补充。<br>6.query-string:发给HTTP服务器的数据。<br>7.anchor:锚(一张网页对另一张网页内容的指引)</p>
+<p>例子：<br><a href="http://www.mywebsite.com/zg/test;id=8097?name=wuti&amp;flag=true#introduce" target="_blank" rel="external">http://www.mywebsite.com/zg/test;id=8097?name=wuti&amp;flag=true#introduce</a><br>scheme:http<br>host:www.mywebsite.com<br>path:/zg/test<br>url-params:id=8097<br>query-string:name=wuti&amp;flag=true<br>anchor:introduce</p>
 <hr>
 <h2 id="HTTP协议特点">HTTP协议特点</h2><hr>
+<blockquote>
+<p>无状态</p>
+</blockquote>
+<p>无状态指HTTP协议对事物处理没有记忆能力，服务器不知道客户端的任何状态。<br>HTTP是一个无状态面向连接的协议，从HTTP/1.1起，默认开启Keep-Alive，保持连接性，简单地说，当一次HTTP请求完成后，客户端与服务器之间用于HTTP数据传输的TCP连接不会断开，当客户端再次向服务器发送HTTP请求时，会继续使用已经建立的连接。<br>但是，Keep-Alive有一个保持时间，可以在服务器软件中(Apache等)设置这个时间。</p>
 <hr>
-<h2 id="HTTP消息结构">HTTP消息结构</h2><hr>
+<h2 id="GET与POST">GET与POST</h2><hr>
+<p>HTTP协议定义了很多客户端与服务器交互的方法，最基本的有4种，分别是GET、POST、PUT、DELETE，对应着对服务器资源的查、改、增、删四个基本操作。最常用的是POST和GET。<br>POST与GET的区别：<br>1.GET提交的数据放在URL中，POST提交的数据放在HTTP包的Body中。<br>2.GET提交的数据大小有限制(受限于URL的长度)，POST没有。<br>3.GET方式存在安全问题。</p>
 <hr>
-<h2 id="HTTP方法">HTTP方法</h2><hr>
+<h2 id="状态码">状态码</h2><hr>
+<p>HTTP/1.1中定义了5类状态码，状态码由三位数字组成，第一个数字定义了响应的类别。</p>
+<blockquote>
+<p>1XX:提示信息-表示请求已被成功接收，继续处理<br>2XX:成功-表示请求已被成功接收、理解和接受<br>3XX:重定向-完成请求需要进行更进一步处理<br>4XX:客户端错误-请求有语法错误或者请求无法实现<br>5XX:服务器端错误-服务器未能实现合法的请求</p>
+</blockquote>
 <hr>
   
 	</div>
@@ -123,7 +135,7 @@ HTTP方法">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/前端/">前端</a>
+  <a class="article-category-link" href="/categories/后端/">后端</a>
 </div>
 
 
@@ -149,9 +161,9 @@ HTTP方法">
 
 
 <div class="next">
-<a href="/post/多态实现instanceof/"  title="多态实现instanceof">
+<a href="/post/多态代替instanceof/"  title="多态代替instanceof">
  <strong>NEXT:</strong><br/> 
- <span>多态实现instanceof
+ <span>多态代替instanceof
 </span>
 </a>
 </div>
@@ -168,7 +180,7 @@ HTTP方法">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL详解"><span class="toc-number">2.</span> <span class="toc-text">URL详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">3.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP消息结构"><span class="toc-number">4.</span> <span class="toc-text">HTTP消息结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP方法"><span class="toc-number">5.</span> <span class="toc-text">HTTP方法</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是HTTP协议"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL详解"><span class="toc-number">2.</span> <span class="toc-text">URL详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议特点"><span class="toc-number">3.</span> <span class="toc-text">HTTP协议特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET与POST"><span class="toc-number">4.</span> <span class="toc-text">GET与POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码"><span class="toc-number">5.</span> <span class="toc-text">状态码</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -184,11 +196,13 @@ HTTP方法">
 		
 			<li><a href="/categories/java基础/" title="java基础">java基础<sup>4</sup></a></li>
 		
-			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
 		
-			<li><a href="/categories/后端/" title="后端">后端<sup>1</sup></a></li>
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
 		
-			<li><a href="/categories/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+			<li><a href="/categories/后端/" title="后端">后端<sup>2</sup></a></li>
+		
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
 		
 			<li><a href="/categories/杂记/" title="杂记">杂记<sup>1</sup></a></li>
 		

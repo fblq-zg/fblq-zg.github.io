@@ -10,10 +10,10 @@
     <meta name="author" content="zhong.zhou">
     
     <meta name="description" content="引言
+数据库索引是数据库管理系统中一个排序的数据结构，协助数据库的快速查询和更新。索引的实现一般使用B树及其变种B+树。代价：一是增加了数据库的存储空间，二是数据库操作造成的索引维护需要花费时间。
 
 分类
-覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。复合索引：多列组合成一个索引，可以代替多个单一索引，遵循最左前缀原则。普通索引：最基本的索引，没有任何限制条件。唯一索引：索引列必须唯一，允许为空。主键索引：索引列不允许为空的唯一索引。
-全文索引：适用">
+覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。复合索引：">
     
     
     
@@ -83,7 +83,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-09-29T11:25:51.000Z" itemprop="datePublished">2015-09-29</time>
-    更新日期:<time datetime="2015-10-26T09:44:49.022Z" itemprop="dateModified">2015-10-26</time>
+    更新日期:<time datetime="2015-11-01T08:24:43.070Z" itemprop="dateModified">2015-11-01</time>
     
   </p>
 </header>
@@ -92,15 +92,24 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全文索引：适用于匹配长字符串的索引，耗费空间。"><span class="toc-number">3.</span> <span class="toc-text">全文索引：适用于匹配长字符串的索引，耗费空间。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">4.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">4.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位图"><span class="toc-number">4.2.</span> <span class="toc-text">位图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">4.3.</span> <span class="toc-text">HASH</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">3.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">3.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">3.2.</span> <span class="toc-text">HASH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用条件（BTREE索引）"><span class="toc-number">4.</span> <span class="toc-text">适用条件（BTREE索引）</span></a></li></ol>
 		</div>
 		
 		<h2 id="引言">引言</h2><hr>
+<p>数据库索引是数据库管理系统中<strong><em>一个排序的数据结构</em></strong>，协助数据库的快速查询和更新。<strong><em>索引的实现一般使用B树及其变种B+树。</em></strong><br><strong><em>代价：</em></strong>一是增加了数据库的存储空间，二是数据库操作造成的索引维护需要花费时间。</p>
 <hr>
 <h2 id="分类">分类</h2><hr>
-<p>覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。<br>复合索引：多列组合成一个索引，可以代替多个单一索引，遵循最左前缀原则。<br>普通索引：最基本的索引，没有任何限制条件。<br>唯一索引：索引列必须唯一，允许为空。<br>主键索引：索引列不允许为空的唯一索引。</p>
-<h2 id="全文索引：适用于匹配长字符串的索引，耗费空间。">全文索引：适用于匹配长字符串的索引，耗费空间。</h2><h2 id="实现方式">实现方式</h2><hr>
-<h3 id="BTREE">BTREE</h3><h3 id="位图">位图</h3><h3 id="HASH">HASH</h3><p>hash前后大小关系发生变化，不支持范围查找，只能等值过滤，不能避免数据排序。<br>hash后可能产生相同的值，需要进行回表操作，查询效率取决于hash的质量。<br>复合索引采用hash，合并组合键进行hash求值，不能利用部分索引键进行查询。</p>
+<p>覆盖索引：查询列被索引覆盖，根据索引能查询到满足条件的所有数据，不需要进行回表操作。<br>复合索引：多列组合成一个索引，可以代替多个单一索引，遵循最左前缀原则。<br>普通索引：最基本的索引，没有任何限制条件。<br>唯一索引：索引列必须唯一，允许为空。<br>主键索引：索引列不允许为空的唯一索引。<br>全文索引：适用于匹配长字符串的索引，耗费空间。</p>
+<hr>
+<h2 id="实现方式">实现方式</h2><hr>
+<h3 id="BTREE">BTREE</h3><hr>
+<p>B树：<br>二叉搜索树，每个节点只存储一个关键字，等于则命中，小于走左节点，大于走右节点。<br>B-树：<br>多路搜索树，每个节点存储M/2到M个关键字，非叶子节点存储指向关键字范围的子节点，所有关键字在整棵树中仅出现一次，非叶子节点可以命中。<br>B+树：<br>在B-树基础上，为叶子节点增加链表指针，所有关键字都在叶子节点中出现，非叶子节点作为叶子节点的索引，B+树只能到叶子节点才命中。<br>B*树：<br>在B+树基础上，为非叶子节点也增加链表指针，将节点的最低利用率从1/2提高到2/3。</p>
+<hr>
+<h3 id="HASH">HASH</h3><hr>
+<p><strong><em>特点：</em></strong><br>1.hash前后大小关系发生变化，不支持范围查找，只能等值过滤，不能避免数据排序。<br>2.hash后可能产生相同的值，需要进行回表操作，查询效率取决于hash的质量。<br>3.复合索引采用hash，合并组合键进行hash求值，不能利用部分索引键进行查询。</p>
+<hr>
+<h2 id="适用条件（BTREE索引）">适用条件（BTREE索引）</h2><hr>
+<p>1.经常需要搜索的列，可以加快搜索的速度。<br>2.经常用于连接的外键，可以加快连接的速度。<br>3.需要根据范围进行搜索的列，因为索引已经排序，其指定的范围是连续的。<br>4.经常需要排序的列，因为索引已经排序，这样查询可以利用索引的排序。</p>
 <hr>
   
 	</div>
@@ -159,7 +168,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全文索引：适用于匹配长字符串的索引，耗费空间。"><span class="toc-number">3.</span> <span class="toc-text">全文索引：适用于匹配长字符串的索引，耗费空间。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">4.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">4.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位图"><span class="toc-number">4.2.</span> <span class="toc-text">位图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">4.3.</span> <span class="toc-text">HASH</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现方式"><span class="toc-number">3.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BTREE"><span class="toc-number">3.1.</span> <span class="toc-text">BTREE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HASH"><span class="toc-number">3.2.</span> <span class="toc-text">HASH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用条件（BTREE索引）"><span class="toc-number">4.</span> <span class="toc-text">适用条件（BTREE索引）</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -175,11 +184,13 @@
 		
 			<li><a href="/categories/java基础/" title="java基础">java基础<sup>4</sup></a></li>
 		
-			<li><a href="/categories/前端/" title="前端">前端<sup>4</sup></a></li>
+			<li><a href="/categories/linux/" title="linux">linux<sup>1</sup></a></li>
 		
-			<li><a href="/categories/后端/" title="后端">后端<sup>1</sup></a></li>
+			<li><a href="/categories/前端/" title="前端">前端<sup>3</sup></a></li>
 		
-			<li><a href="/categories/数据库/" title="数据库">数据库<sup>1</sup></a></li>
+			<li><a href="/categories/后端/" title="后端">后端<sup>2</sup></a></li>
+		
+			<li><a href="/categories/数据库/" title="数据库">数据库<sup>2</sup></a></li>
 		
 			<li><a href="/categories/杂记/" title="杂记">杂记<sup>1</sup></a></li>
 		

@@ -4,10 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Cookie与Session的原理与区别 | 行者</title>
+    <title>win7硬盘安装ubutun | 行者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="zhong.zhou">
+    
+    <meta name="description" content="引言
+本文介绍的是在Windows下使用EasyBCD硬盘安装64位Ubutun14.04.3的方法，
+
+软件下载
+
+EasyBCD
+ubuntu-14.04.3-desktop-amd64+mac.iso
+
+
+安装步骤
+划分磁盘配置足够的磁盘空间给Ubutun（20G以上为宜），在Window7下">
     
     
     
@@ -69,15 +81,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/post/Cookie与Session的原理与区别/" title="Cookie与Session的原理与区别" itemprop="url">Cookie与Session的原理与区别</a>
+      <a href="/post/win7硬盘安装ubutun/" title="win7硬盘安装ubutun" itemprop="url">win7硬盘安装ubutun</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://fblq-zg.github.io" title="zhong.zhou">zhong.zhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-10-26T07:34:47.000Z" itemprop="datePublished">2015-10-26</time>
-    更新日期:<time datetime="2015-10-26T07:34:47.282Z" itemprop="dateModified">2015-10-26</time>
+    <time datetime="2015-10-28T17:18:29.000Z" itemprop="datePublished">2015-10-29</time>
+    更新日期:<time datetime="2015-10-29T01:42:31.515Z" itemprop="dateModified">2015-10-29</time>
     
   </p>
 </header>
@@ -86,19 +98,68 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件下载"><span class="toc-number">2.</span> <span class="toc-text">软件下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装步骤"><span class="toc-number">3.</span> <span class="toc-text">安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#划分磁盘"><span class="toc-number">3.1.</span> <span class="toc-text">划分磁盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引导文件配置"><span class="toc-number">3.2.</span> <span class="toc-text">引导文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建启动入口"><span class="toc-number">3.3.</span> <span class="toc-text">新建启动入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启系统"><span class="toc-number">3.4.</span> <span class="toc-text">重启系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分区"><span class="toc-number">3.5.</span> <span class="toc-text">分区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清理文件"><span class="toc-number">4.</span> <span class="toc-text">清理文件</span></a></li></ol>
 		</div>
 		
-		  
+		<h2 id="引言">引言</h2><hr>
+<p>本文介绍的是在Windows下使用EasyBCD硬盘安装64位Ubutun14.04.3的方法，</p>
+<hr>
+<h2 id="软件下载">软件下载</h2><hr>
+<ol>
+<li>EasyBCD</li>
+<li>ubuntu-14.04.3-desktop-amd64+mac.iso</li>
+</ol>
+<hr>
+<h2 id="安装步骤">安装步骤</h2><hr>
+<h3 id="划分磁盘">划分磁盘</h3><p>配置足够的磁盘空间给Ubutun（20G以上为宜），在Window7下，计算机右键-管理-磁盘管理，从一个逻辑分区中扩展出一个分区给Ubutun，进行格式化。<br><strong><em>遇到的问题</em></strong></p>
+<blockquote>
+<p>磁盘管理中有4个主分区，扩展分区时，只能扩展动态磁盘，无法扩展出逻辑分区。</p>
+</blockquote>
+<p><strong><em>解决方法</em></strong></p>
+<blockquote>
+<p>空闲出一个主分区，删除卷-新建卷，将主分区变成逻辑分区后，就可以扩展分区。</p>
+</blockquote>
+<h3 id="引导文件配置">引导文件配置</h3><p>将ubuntu-14.04.3-desktop-amd64+mac.iso拷贝到某一个盘的根目录（C盘为例），用rar软件打开，将其中的.disk、casper/initrd.lz、casper/vmlinuz解压到C盘的根目录。</p>
+<blockquote>
+<p>注意：不同的Unutun版本，需要的解压的文件名称可能不同。</p>
+</blockquote>
+<h3 id="新建启动入口">新建启动入口</h3><p>安装并打开EasyBCD软件，新建neogrub，添加新条目-Neogrub-安装-配置，在弹出的txt文件中编辑如下文字，保存后退出。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title Install Ubuntu <span class="number">14.04</span></span><br><span class="line">root (hd0,<span class="number">0</span>)</span><br><span class="line">kernel (hd0,<span class="number">0</span>)/vmlinuz boot=casper iso-scan/filename=/ubuntu-<span class="number">14.04</span><span class="number">.3</span>-desktop-amd64+mac.iso ro quietsplash locale=zh_CN.UTF-<span class="number">8</span></span><br><span class="line">initrd (hd0,<span class="number">0</span>)/initrd.lz</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>其中的(hd0,0)表示C盘是第一个盘符，安装时根据具体情况而定，我安装时，C盘是第三个盘符，因此需要把(hd0,0)改成(hd0,2)<br>其中的ubuntu-14.04.3-desktop-amd64+mac.iso为即将要安装的Ubutun的iso名字<br>vmlinuz和initrd.lz为解压在C盘根目录中的对应文件的名字</p>
+</blockquote>
+<h3 id="重启系统">重启系统</h3><p>NeoGrub启动-Install Ubutun,进入Ubutun，打开终端(ctrl+alt+t),运行如下命令：</p>
+<blockquote>
+<p>sudo umount -l /isodevice</p>
+</blockquote>
+<p>点击桌面上安装系统按钮开始安装。</p>
+<h3 id="分区">分区</h3><p>按照提示进行选择，其中在分区界面，参考如下分区方法：安装双系统，所有分区类型都选择逻辑分区，分区大小：/boot 120M 、/ 15G、/home 10G、/swap 3G，随后按照提示继续操作，设置用户名和密码，安装Ubutun系统成功后，重启系统。</p>
+<blockquote>
+<p>注意：如果仅安装Ubutun，需要有一个主分区。</p>
+</blockquote>
+<hr>
+<h2 id="清理文件">清理文件</h2><hr>
+<p>安装成功后，清除C盘下的引导文件和安装文件，同时删除EasyBCD中新建的neogrub启动入口。</p>
+<hr>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/系统安装/">系统安装</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/linux/">linux</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://fblq-zg.github.io/post/Cookie与Session的原理与区别/" data-title="Cookie与Session的原理与区别 | 行者" data-tsina="null" class="share clearfix">
+  <div data-url="http://fblq-zg.github.io/post/win7硬盘安装ubutun/" data-title="win7硬盘安装ubutun | 行者" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -108,18 +169,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/post/win7硬盘安装ubutun/" title="win7硬盘安装ubutun">
+ <a href="/post/B+和B-TREE索引性能分析/" title="B+和B-TREE索引性能分析">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  win7硬盘安装ubutun</span>
+  B+和B-TREE索引性能分析</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/post/HTTP协议详解/"  title="HTTP协议详解">
+<a href="/post/Cookie与Session的原理与区别/"  title="Cookie与Session的原理与区别">
  <strong>NEXT:</strong><br/> 
- <span>HTTP协议详解
+ <span>Cookie与Session的原理与区别
 </span>
 </a>
 </div>
@@ -136,7 +197,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件下载"><span class="toc-number">2.</span> <span class="toc-text">软件下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装步骤"><span class="toc-number">3.</span> <span class="toc-text">安装步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#划分磁盘"><span class="toc-number">3.1.</span> <span class="toc-text">划分磁盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引导文件配置"><span class="toc-number">3.2.</span> <span class="toc-text">引导文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建启动入口"><span class="toc-number">3.3.</span> <span class="toc-text">新建启动入口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重启系统"><span class="toc-number">3.4.</span> <span class="toc-text">重启系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分区"><span class="toc-number">3.5.</span> <span class="toc-text">分区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清理文件"><span class="toc-number">4.</span> <span class="toc-text">清理文件</span></a></li></ol>
   </div>
 
 <div id="asidepart">
